@@ -110,7 +110,7 @@
 <meta property="og:site_name" content="YanJin&#39;s Blog">
 <meta property="og:description" content="威胁猎人初级安全实习生面经面试时间及岗位时间：2018 年 11 月 9 日 下午 4 点 岗位：威胁猎人初级安全实习生 技术官一面技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。 然后问了我下面几个问题： 1.OSI 七层模型是哪七层？（没答出来全部，记得一两个） 2.有没有用过 Linux 系统 3.Cat 命令和 Grep 命令">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-11-15T01:56:27.937Z">
+<meta property="og:updated_time" content="2018-11-15T13:11:27.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="威胁猎人初级安全实习生面经">
 <meta name="twitter:description" content="威胁猎人初级安全实习生面经面试时间及岗位时间：2018 年 11 月 9 日 下午 4 点 岗位：威胁猎人初级安全实习生 技术官一面技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。 然后问了我下面几个问题： 1.OSI 七层模型是哪七层？（没答出来全部，记得一两个） 2.有没有用过 Linux 系统 3.Cat 命令和 Grep 命令">
@@ -336,7 +336,7 @@
                 
               
 
-              <time title="Created: 2018-11-15 09:42:58 / Modified: 09:56:27" itemprop="dateCreated datePublished" datetime="2018-11-15T09:42:58+08:00">2018-11-15</time>
+              <time title="Created: 2018-11-15 09:42:58 / Modified: 21:11:27" itemprop="dateCreated datePublished" datetime="2018-11-15T09:42:58+08:00">2018-11-15</time>
             
 
             
@@ -409,10 +409,14 @@
 <p>密码也应该有强度要求，然后不能直接明文发生登陆或者注册请求到服务器，要加盐加密传输，数据库存储也应该是加盐加密保存，防止被脱裤之后明文裸奔</p>
 <p>参数还要带有 csfr_token 值防止 CSRF 攻击</p>
 <p>cookie 中要设置 HttpOnly 属性，那么通过 js 脚本将无法读取到 cookie 信息，这样能有效的防止 XSS 攻击</p>
+<p>对于参数的输入要进行参数化参训防止SQL注入</p>
 <p>3.https 能不能被破解</p>
 <p>我说可以，就是在客户端或者服务器端劫持，替换了证明就可以看到 https 明文传输的内容。但是 CTO 指出来这是因为你用了抓包工具，而且还是在网站没有校验证书的情况下，如果校验的话中间人劫持也没用</p>
 <p>4.我简历上学校正方的漏洞是怎么挖到的</p>
 <p>5.自己还有投别的公司拿到 offer 吗？（我说还投了一家教育公司，他就有点怀疑我是不是真的喜欢安全了，这里建议不要回答不相关的）</p>
+<p>6.问我如果数据库被脱裤了，有什么处理方案</p>
+<p>一赶紧溯源攻击，找到入侵者，然后寻找是否这个数据库是否在网上公开，要即可减少被售卖或者公开的机会</p>
+<p>二是告诉用户，提醒用户改密码</p>
 <p>面试的时候，大佬眉头一直紧皱的看着我的简历，让我很害怕</p>
 <h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>HR面就没问啥了，问我期望薪水。我说 4k-5k 然后似乎被嘲笑了哈哈，说实习生工资没有这么高的，进来主要是学东西。</p>
 <p>还问我几时可以到岗，最后是拿到这个实习生 offer 啦！</p>
