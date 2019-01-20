@@ -21,18 +21,18 @@
     
     
     <meta name="keywords" content="Python爬虫">
-    <meta name="description" content="微信公众号推文永久链接爬虫需求获取某个或多个微信公众号的所有文章，并且文章的链接是永久链接。比如我之前想分析学校公众号的某一个长期栏目，就需要他所有相关推送的文章内容。但是有 100+ 的推送，总不可能一篇一篇文章的去保存它的链接对吧？因此要想办法自动获取到所有的链接，再通过打开链接得到文章内容。 原理利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口。因此，我们要做的就是">
+    <meta name="description" content="利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接">
 <meta name="keywords" content="Python爬虫">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信公众号推文永久链接爬虫">
 <meta property="og:url" content="http://yanjin.io/2018/04/26/wechatArticleSpider/index.html">
 <meta property="og:site_name" content="YanJin&#39;s Blog">
-<meta property="og:description" content="微信公众号推文永久链接爬虫需求获取某个或多个微信公众号的所有文章，并且文章的链接是永久链接。比如我之前想分析学校公众号的某一个长期栏目，就需要他所有相关推送的文章内容。但是有 100+ 的推送，总不可能一篇一篇文章的去保存它的链接对吧？因此要想办法自动获取到所有的链接，再通过打开链接得到文章内容。 原理利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口。因此，我们要做的就是">
+<meta property="og:description" content="利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-06T15:12:02.000Z">
+<meta property="og:updated_time" content="2019-01-20T11:56:46.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信公众号推文永久链接爬虫">
-<meta name="twitter:description" content="微信公众号推文永久链接爬虫需求获取某个或多个微信公众号的所有文章，并且文章的链接是永久链接。比如我之前想分析学校公众号的某一个长期栏目，就需要他所有相关推送的文章内容。但是有 100+ 的推送，总不可能一篇一篇文章的去保存它的链接对吧？因此要想办法自动获取到所有的链接，再通过打开链接得到文章内容。 原理利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口。因此，我们要做的就是">
+<meta name="twitter:description" content="利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接">
     
         <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
     
@@ -158,7 +158,7 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#微信公众号推文永久链接爬虫"><span class="post-toc-number">1.</span> <span class="post-toc-text">微信公众号推文永久链接爬虫</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需求"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">需求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">代码</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#需求"><span class="post-toc-number">1.</span> <span class="post-toc-text">需求</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#原理"><span class="post-toc-number">2.</span> <span class="post-toc-text">原理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">3.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">4.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">5.</span> <span class="post-toc-text">代码</span></a></li></ol>
         </nav>
     </aside>
 
@@ -182,7 +182,8 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h1 id="微信公众号推文永久链接爬虫"><a href="#微信公众号推文永久链接爬虫" class="headerlink" title="微信公众号推文永久链接爬虫"></a>微信公众号推文永久链接爬虫</h1><h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>获取某个或多个微信公众号的所有文章，并且文章的链接是永久链接。比如我之前想分析学校公众号的某一个长期栏目，就需要他所有相关推送的文章内容。但是有 100+ 的推送，总不可能一篇一篇文章的去保存它的链接对吧？因此要想办法自动获取到所有的链接，再通过打开链接得到文章内容。</p>
+            <p>利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接<br><a id="more"></a></p>
+<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>获取某个或多个微信公众号的所有文章，并且文章的链接是永久链接。比如我之前想分析学校公众号的某一个长期栏目，就需要他所有相关推送的文章内容。但是有 100+ 的推送，总不可能一篇一篇文章的去保存它的链接对吧？因此要想办法自动获取到所有的链接，再通过打开链接得到文章内容。</p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口。因此，我们要做的就是模拟这个请求。<br>1.Selenium ＋ Webdriver 登陆微信公众平台，获取公众号的Cookie<br>2.登陆之后获取 token 值，因为之后所有请求都需要带 token 这个参数<br>3.模拟搜索公众号，每个公众号有对应的 fakeid，我们要得到公众号的fakeid<br>4.模拟搜索公众号内的文章，self.query 这个值为搜索公众号文章的关键字，默认为空，可以修改为自己想要找的公众号文章标题对应的关键字。此时会返回一个 JSON 包，app_msg_list 中的 link 就是我们要的链接。</p>
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>你要有一个自己的微信公众号（订阅号）<br>Python环境：Python3</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>修改 wechat_official_accounts 为想要搜索公众号的微信号，支持多个微信号<br>修改 username 为自己订阅号的账号<br>修改 password 为自己订阅号的密码<br>修改 self.query 为自己想要搜索的公众号文章标题对应的关键字<br>修改 self.driver = webdriver.Firefox(executable_path=’/Users/zl/Downloads/geckodriver’) 为自己对应的 geckodriver 内核地址，也可以使用 Chrome 浏览器</p>
@@ -197,7 +198,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2018-05-06T15:12:02.000Z" itemprop="dateUpdated">2018-05-06 23:12:02</time>
+    Last updated: <time datetime="2019-01-20T11:56:46.943Z" itemprop="dateUpdated">2019-01-20 19:56:46</time>
 </span><br>
 
 
@@ -239,7 +240,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2018/04/26/wechatArticleSpider/&title=《微信公众号推文永久链接爬虫》 — YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2018/04/26/wechatArticleSpider/&title=《微信公众号推文永久链接爬虫》 — YanJin's Blog&source=利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -279,7 +280,7 @@
     <div class="waves-block waves-effect prev">
       <a href="/2018/04/26/foreverArticle/" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">[no title]</h4>
+        <h4 class="title">如何写一篇永远保存在这个世界中的文章</h4>
       </a>
     </div>
   
@@ -386,7 +387,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2018/04/26/wechatArticleSpider/&title=《微信公众号推文永久链接爬虫》 — YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2018/04/26/wechatArticleSpider/&title=《微信公众号推文永久链接爬虫》 — YanJin's Blog&source=利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
