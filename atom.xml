@@ -110,29 +110,6 @@
   </entry>
   
   <entry>
-    <title>如何写一篇永远保存在这个世界中的文章</title>
-    <link href="http://yanjin.io/2018/04/26/foreverArticle/"/>
-    <id>http://yanjin.io/2018/04/26/foreverArticle/</id>
-    <published>2018-04-26T03:41:18.000Z</published>
-    <updated>2018-04-27T12:28:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h1><p>最近我们身边发生了很多事情，比如说北大岳欣事件，比如说武汉理工大学研究生因为导师欺压跳楼事件等等。这里面经常发生的一件事情是，人们的发声被删除。比如说你写的公众号文章，或者是帖子，很容易就从网络上抹除了痕迹。</p><p>但直到前几天我看到了一篇文章，它介绍了区块链的一个应用,才有了一个比较完美的解决方法。我们可以利用区块链来记录我们的文章。</p><h1 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h1><blockquote><p>一句话，它是一种特殊的分布式数据库。</p></blockquote><blockquote><p>首先，区块链的主要作用是储存信息。任何需要保存的信息，都可以写入区块链，也可以从里面读取，所以它是数据库。</p></blockquote><blockquote><p>其次，任何人都可以架设服务器，加入区块链网络，成为一个节点。区块链的世界里面，没有中心节点，每个节点都是平等的，都保存着整个数据库。你可以向任何一个节点，写入/读取数据，因为所有节点最后都会同步，保证区块链一致。</p></blockquote><blockquote><p>区块链没有管理员，它是彻底无中心的。其他的数据库都有管理员，但是区块链没有。如果有人想对区块链添加审核，也实现不了，因为它的设计目标就是防止出现居于中心地位的管理当局。</p></blockquote><blockquote><p>正是因为无法管理，区块链才能做到无法被控制。否则一旦大公司大集团控制了管理权，他们就会控制整个平台，其他使用者就都必须听命于他们了。</p></blockquote><p>引用来自：<a href="http://www.ruanyifeng.com/blog/2017/12/blockchain-tutorial.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2017/12/blockchain-tutorial.html</a></p><p>所以，我们利用区块链的不可删除性，来记录我们的文章。那么什么时候需要利用这个特性呢？那就是当你遇到了不公平的对待，需要在这个世界上，在网络发声的时候。当然，我们假设你所面对的不公是真实的，不是伪造的。</p><p>也许有的人在此时此刻说的谎话被人们当真了。可若你在区块链中记录了这一件事情，一百年后，事情的真相还是会水落石出。</p><h1 id="区块链记录方法"><a href="#区块链记录方法" class="headerlink" title="区块链记录方法"></a>区块链记录方法</h1><p>我自己是从某一个交易平台买了 100 RMB 以太坊币，然后从交易平台转账到我自己的钱包。至于要怎么买币，就留给大家去谷歌了。希望大家能够试一试这个探索的过程。因为直接得到的答案并不会深刻。但我就被坑了，从交易平台提现到钱包又要收手续费，把以太坊币换成人民币大概是 40+ RMB。</p><p>因此，首先你要有以太坊币，有了币之后你就可以发起转账了。而且买币之前你最好要有一个电子钱包，我用的是 imToken。</p><p>不过这个钱包不能自己给自己转账，我的方法就是安卓多开这个软件，创建了两个钱包，我就通过一个钱包转账给另外一个钱包。另外因为转账本身是需要给矿工手续费的，你把数据记录在区块链上，总要有人来处理吧。那就是矿工，矿工的收益除了自己挖到的币，还有就是这种交易费。</p><p>对于要记录的内容，英文内容可以直接转成 16 进制码，中文内容则要以 UTF-8 码的字符串形式转为 16 进制码。</p><p>转换网址：<a href="http://tool.haooyou.com/code?group=convert&amp;type=strToHex&amp;charset=UTF-8" target="_blank" rel="noopener">http://tool.haooyou.com/code?group=convert&amp;type=strToHex&amp;charset=UTF-8</a></p><p>所以我要先把自己这篇的文章以 UTF-8 码的字符串形式转为 16 进制码，最后还要在代码之前加上固定头部“0x”以表示 16 进制。</p><p>为了能够记录我们的文章，转账的时候要选择高级选项，这样我们才能把这个内容记录在区块链中。要记得千万不要把内容写在「<strong>备注</strong>」里面，要写在高级选项的十六进制数据中。</p><p>高级选项会让你自定义 Gas Price和 Gas Limit。 一笔转账需要花费矿工费 =  Gas Price * Gas Limit。通常情况下，如果有人只说 Gas ，指的就是 Gas Limit，Gas Limitt 相当于汽车需要加多少汽油， Gas Price 相当于每升汽油的价格。</p><p>因为我这篇文章的字数接近 1500 字，所以这一次我输入的 Gas Limit 为 3000000，Gas Price 为 2 gwei。你必须包括足够的 gas 来支付计算资源，否则由于 Gas 不够报错 Out of gas。但最后我这个就没花完，所有未使用的 gas 在转账结束时退还了。</p><p>我试了一下，1500 左右的字矿工手续费大概需要人民币 7 块钱左右，也不贵。大家少喝两瓶饮料，就能让你的文章永远记录下来了。然后会得到最重要的 Hash 值，它是一长串数字字母。它是这个记录的凭据，你可以用各种方法把它记录下来。因为之后你可以在任何一个以太坊的节点中查询到你曾经记录过的信息。</p><p>以太坊查询网址：<a href="https://etherscan.io" target="_blank" rel="noopener">https://etherscan.io</a></p><p>在这里输入那串转账记录的 Hash 值，就可以看到你记录的文章啦。</p><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>我从过去这些事件得到最大的一个启发是，我们面前没有绝对的真相。你会发现呈现在你面前的数据都是别人想给你看到的。很多新闻，一开始是这个风向，说这个不好那个不好，某某的错。后来一研究，一推敲，发现很多地方是错的。</p><p>那么，上面的这种情况可能就要要求新闻工作者们有更高的追求。作为程序员，也要有自己的要求。我希望自己要有职业操守，和道德的修养。我们这一代最聪明的人，最顶尖的人，如果都去弄广告的算法，想着如何让人去点击广告，我个人觉得是一个很令人害怕的事情。</p><p>所以我希望能够做一些真正意义上有用的工具给大家，去改善我们的生活，去改变这个世界。</p><p>最后我把这文章记录在以太坊区块链上，如果有一天这个博客不在了，拿着那串 Hash 值还能看到我写下来的文字。</p><p><a href="https://etherscan.io/tx/0x6ba91b389726c26116816bc5eba0d474c4a3f3af066078d294d36fe86c11dac5" target="_blank" rel="noopener">本文区块链查询地址</a></p><p>Hash：6ba91b389726c26116816bc5eba0d474c4a3f3af066078d294d36fe86c11dac5 </p><p>参考方法和引用来自：<a href="http://www.wdk.pw/1410.html" target="_blank" rel="noopener">http://www.wdk.pw/1410.html</a></p><p><a href="http://www.pingwest.com/how-to-post-blog-on-blockchain/" target="_blank" rel="noopener">http://www.pingwest.com/how-to-post-blog-on-blockchain/</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h1&gt;&lt;p&gt;最近我们身边发生了很多事情，比如说北大岳欣事件，比如说武汉理工大学研究生因为导师欺压跳楼事件等等。这里面经常发生的一件事情是，人们的发声被删
-      
-    
-    </summary>
-    
-    
-      <category term="感悟" scheme="http://yanjin.io/tags/%E6%84%9F%E6%82%9F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>微信公众号推文永久链接爬虫</title>
     <link href="http://yanjin.io/2018/04/26/wechatArticleSpider/"/>
     <id>http://yanjin.io/2018/04/26/wechatArticleSpider/</id>
