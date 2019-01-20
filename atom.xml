@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yanjin.io/"/>
-  <updated>2018-11-15T13:11:27.474Z</updated>
+  <updated>2018-11-18T14:31:51.689Z</updated>
   <id>http://yanjin.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>360企业安全实习生面经</title>
+    <link href="http://yanjin.io/2018/11/15/360%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E7%BB%8F/"/>
+    <id>http://yanjin.io/2018/11/15/360企业安全实习生面经/</id>
+    <published>2018-11-15T01:42:58.897Z</published>
+    <updated>2018-11-18T14:31:51.689Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="360企业安全实习生面经"><a href="#360企业安全实习生面经" class="headerlink" title="360企业安全实习生面经"></a>360企业安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 17 日 下午 4 点</p><p>岗位：360企业安全实习生</p><h2 id="技术官面"><a href="#技术官面" class="headerlink" title="技术官面"></a>技术官面</h2><p>1.是否还有课，论文什么时候答辩</p><p>2.看我比较擅长 Python，问我有没有搭过什么系统</p><p>搭过公众号开发的一个查询功能</p><p>3.有没有写过爬虫或者什么漏洞利用工具（ EXP 和 POC ）</p><p>写过 Python 爬虫，抢课代码，没写过 EXP 和 POC </p><p>4.Linux 进程如何查看？</p><p>我回答 ps -a,但是应该回答 ps aux 更好</p><p>5.Windows 安全日志在哪里？</p><p>当时没回答出来</p><p>答案：计算机 - 管理 - 事件查看器 - Windows 日志 - 安全</p><p>6.目前有用过哪些扫描器？</p><p>Nmap、AWVS、sqlmap、BurpSuite</p><p>当时回答 BurpSuite 说没有扫描功能很尴尬，技术官指出来说 BurpSuite 是现在最好用的扫描器，集成了各种功能，抓包解码重放爆破</p><p>7.有没有实习过</p><p>没有实习过，刚找实习，面试官因此就问我过去新环境有没有问题</p><p>我回答之前社团工作了两年，经常与人沟通，适应能力很好</p><p>8.任意文件读取漏洞产生的原理</p><p>下载功能或者读取文件时候没有对权限进行控制，允许它跳转到 WEB 目录</p><p>9.任意文件读取漏洞正常出现在什么功能点？</p><p>下载功能或者读取文件，查看一些文件的时候</p><p>10.XSS 原理</p><p>XSS 有三种类型(反射型、存储型、DOM 型)，原理是因为没有过滤客户端提交的数据，被利用后回显到平台</p><p>11.有没有利用过 XSS 平台</p><p>没有……</p><p>12.目前有接触过什么病毒木马吗</p><p><em>WannaCry</em>病毒</p><p>13.病毒环境有哪些特征？病毒的一些特征（除了勒索软件，比如挖矿有什么特征）</p><p>CPU利用资源特别高、不停的发包</p><p>面试官解释这属于网络行为，挖矿会请求矿池，可以通过抓包的方式观察是不是一直在访问矿池，可以确认是不是有挖矿行为</p><p>本机上可能有蠕虫行为、肯定会扩散，植入一堆挖矿病毒</p><p>本机上以防你删除掉查杀掉，还会有一些自启动服务防止被删除</p><p>14.祖籍在哪里</p><p>15.平时有没有处理过 EXCEL 和 WORD，有没有做过一些数据统计或者数据分析</p><p>有的，用过Python数据分析，EXCEL基本操作快捷键都会</p><p>16.EXCEL函数有用过哪些？</p><p>sum、mid、count、if、lookup</p><p>17.是不是打算走普通实习，要不要考虑走校招，再过两轮面试</p><p>走实习，我就问有没有机会转正，面试官说有，看实习表现</p><p>18.问我有没有用过 Java</p><p>没有</p><p>19.问我有没有考虑过在家那边找工作</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;360企业安全实习生面经&quot;&gt;&lt;a href=&quot;#360企业安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;360企业安全实习生面经&quot;&gt;&lt;/a&gt;360企业安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>威胁猎人初级安全实习生面经</title>
@@ -53,29 +76,6 @@
       
       
         &lt;h1 id=&quot;携程测试实习生面经&quot;&gt;&lt;a href=&quot;#携程测试实习生面经&quot; class=&quot;headerlink&quot; title=&quot;携程测试实习生面经&quot;&gt;&lt;/a&gt;携程测试实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗位&quot; class=&quot;he
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>360企业安全实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/360%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E7%BB%8F/"/>
-    <id>http://yanjin.io/2018/11/15/360企业安全实习生面经/</id>
-    <published>2018-11-15T01:42:58.897Z</published>
-    <updated>2018-11-18T14:31:51.689Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="360企业安全实习生面经"><a href="#360企业安全实习生面经" class="headerlink" title="360企业安全实习生面经"></a>360企业安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 17 日 下午 4 点</p><p>岗位：360企业安全实习生</p><h2 id="技术官面"><a href="#技术官面" class="headerlink" title="技术官面"></a>技术官面</h2><p>1.是否还有课，论文什么时候答辩</p><p>2.看我比较擅长 Python，问我有没有搭过什么系统</p><p>搭过公众号开发的一个查询功能</p><p>3.有没有写过爬虫或者什么漏洞利用工具（ EXP 和 POC ）</p><p>写过 Python 爬虫，抢课代码，没写过 EXP 和 POC </p><p>4.Linux 进程如何查看？</p><p>我回答 ps -a,但是应该回答 ps aux 更好</p><p>5.Windows 安全日志在哪里？</p><p>当时没回答出来</p><p>答案：计算机 - 管理 - 事件查看器 - Windows 日志 - 安全</p><p>6.目前有用过哪些扫描器？</p><p>Nmap、AWVS、sqlmap、BurpSuite</p><p>当时回答 BurpSuite 说没有扫描功能很尴尬，技术官指出来说 BurpSuite 是现在最好用的扫描器，集成了各种功能，抓包解码重放爆破</p><p>7.有没有实习过</p><p>没有实习过，刚找实习，面试官因此就问我过去新环境有没有问题</p><p>我回答之前社团工作了两年，经常与人沟通，适应能力很好</p><p>8.任意文件读取漏洞产生的原理</p><p>下载功能或者读取文件时候没有对权限进行控制，允许它跳转到 WEB 目录</p><p>9.任意文件读取漏洞正常出现在什么功能点？</p><p>下载功能或者读取文件，查看一些文件的时候</p><p>10.XSS 原理</p><p>XSS 有三种类型(反射型、存储型、DOM 型)，原理是因为没有过滤客户端提交的数据，被利用后回显到平台</p><p>11.有没有利用过 XSS 平台</p><p>没有……</p><p>12.目前有接触过什么病毒木马吗</p><p><em>WannaCry</em>病毒</p><p>13.病毒环境有哪些特征？病毒的一些特征（除了勒索软件，比如挖矿有什么特征）</p><p>CPU利用资源特别高、不停的发包</p><p>面试官解释这属于网络行为，挖矿会请求矿池，可以通过抓包的方式观察是不是一直在访问矿池，可以确认是不是有挖矿行为</p><p>本机上可能有蠕虫行为、肯定会扩散，植入一堆挖矿病毒</p><p>本机上以防你删除掉查杀掉，还会有一些自启动服务防止被删除</p><p>14.祖籍在哪里</p><p>15.平时有没有处理过 EXCEL 和 WORD，有没有做过一些数据统计或者数据分析</p><p>有的，用过Python数据分析，EXCEL基本操作快捷键都会</p><p>16.EXCEL函数有用过哪些？</p><p>sum、mid、count、if、lookup</p><p>17.是不是打算走普通实习，要不要考虑走校招，再过两轮面试</p><p>走实习，我就问有没有机会转正，面试官说有，看实习表现</p><p>18.问我有没有用过 Java</p><p>没有</p><p>19.问我有没有考虑过在家那边找工作</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;360企业安全实习生面经&quot;&gt;&lt;a href=&quot;#360企业安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;360企业安全实习生面经&quot;&gt;&lt;/a&gt;360企业安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗
       
     
     </summary>
