@@ -14,24 +14,24 @@
     
     
     
-    <title>hexo-theme-indigo主题博客评论系统Valine配置 | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <title>hexo-theme-indigo 博客评论系统 Valine 配置 | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
     <meta name="keywords" content="">
-    <meta name="description" content="##缘由花费了一个下午和晚上折腾博客，因为之前用的主题 Next 行间隔太大了，字体又小小的，自己看的不是很舒服，就想换一个主题，所以换成了 hexo-theme-indigo 这个主题。 折腾过程中官网没有给出配置博客评论系统的代码，我用之前主题 Next的 Valine配置怎么都显示不出来，最后搜索到一篇文章终于发现了不同的地方，hexo-theme-indigo里面的配置中是 appId，不">
+    <meta name="description" content="适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo-theme-indigo主题博客评论系统Valine配置">
+<meta property="og:title" content="hexo-theme-indigo 博客评论系统 Valine 配置">
 <meta property="og:url" content="http://yanjin.io/2019/01/20/blogValine/index.html">
 <meta property="og:site_name" content="YanJin&#39;s Blog">
-<meta property="og:description" content="##缘由花费了一个下午和晚上折腾博客，因为之前用的主题 Next 行间隔太大了，字体又小小的，自己看的不是很舒服，就想换一个主题，所以换成了 hexo-theme-indigo 这个主题。 折腾过程中官网没有给出配置博客评论系统的代码，我用之前主题 Next的 Valine配置怎么都显示不出来，最后搜索到一篇文章终于发现了不同的地方，hexo-theme-indigo里面的配置中是 appId，不">
+<meta property="og:description" content="适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-20T12:23:55.098Z">
+<meta property="og:updated_time" content="2019-01-20T12:28:31.969Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo-theme-indigo主题博客评论系统Valine配置">
-<meta name="twitter:description" content="##缘由花费了一个下午和晚上折腾博客，因为之前用的主题 Next 行间隔太大了，字体又小小的，自己看的不是很舒服，就想换一个主题，所以换成了 hexo-theme-indigo 这个主题。 折腾过程中官网没有给出配置博客评论系统的代码，我用之前主题 Next的 Valine配置怎么都显示不出来，最后搜索到一篇文章终于发现了不同的地方，hexo-theme-indigo里面的配置中是 appId，不">
+<meta name="twitter:title" content="hexo-theme-indigo 博客评论系统 Valine 配置">
+<meta name="twitter:description" content="适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine">
     
         <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
     
@@ -112,7 +112,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">hexo-theme-indigo主题博客评论系统Valine配置</div>
+        <div class="flex-col header-title ellipsis">hexo-theme-indigo 博客评论系统 Valine 配置</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -134,7 +134,7 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">hexo-theme-indigo主题博客评论系统Valine配置</h1>
+        <h1 class="title">hexo-theme-indigo 博客评论系统 Valine 配置</h1>
         <h5 class="subtitle">
             
                 <time datetime="2019-01-20T12:02:17.000Z" itemprop="datePublished" class="page-time">
@@ -154,12 +154,19 @@
 
 <div class="container body-wrap">
     
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缘由"><span class="post-toc-number">1.</span> <span class="post-toc-text">缘由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">方法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码</span></a></li></ol>
+        </nav>
+    </aside>
+
 
 <article id="post-blogValine"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">hexo-theme-indigo主题博客评论系统Valine配置</h1>
+        <h1 class="post-card-title">hexo-theme-indigo 博客评论系统 Valine 配置</h1>
         <div class="post-meta">
             <time class="post-time" title="2019-01-20 20:02:17" datetime="2019-01-20T12:02:17.000Z"  itemprop="datePublished">2019-01-20</time>
 
@@ -174,10 +181,11 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>##缘由<br>花费了一个下午和晚上折腾博客，因为之前用的主题 Next 行间隔太大了，字体又小小的，自己看的不是很舒服，就想换一个主题，所以换成了 hexo-theme-indigo 这个主题。</p>
+            <p>适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine<br><a id="more"></a></p>
+<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>花费了一个下午和晚上折腾博客，因为之前用的主题 Next 行间隔太大了，字体又小小的，自己看的不是很舒服，就想换一个主题，所以换成了 hexo-theme-indigo 这个主题。</p>
 <p>折腾过程中官网没有给出配置博客评论系统的代码，我用之前主题 Next的 Valine配置怎么都显示不出来，最后搜索到一篇文章终于发现了不同的地方，hexo-theme-indigo里面的配置中是 appId，不是 appid。</p>
-<p>##方法<br>修改博客对应的主题目录的配置文件，例如blog/themes/indigo/_config.yml，直接添加下方代码即可，修改对应的 id 和 key 值为自己 Leancloud 的。</p>
-<p>##代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true # 如果你想使用valine，请将值设置为 true</span><br><span class="line">  appId: VhFrgXmsecYpTf8oE106WPQs-gzGzoHsz # your leancloud appId</span><br><span class="line">  appKey: H1VtQ28JkYV2JOq6TP8HdImT # your leancloud appKey</span><br><span class="line">  notify: true # Mail notify</span><br><span class="line">  verify: false # Verify code</span><br><span class="line">  avatar: mm # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide</span><br><span class="line">  placeholder: Just go go # Comment Box placeholder</span><br><span class="line">  guest_info: nick,mail # Comment header info</span><br><span class="line">  pageSize: 10 # comment list page size</span><br></pre></td></tr></table></figure></p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>修改博客对应的主题目录的配置文件，例如blog/themes/indigo/_config.yml，直接添加下方代码即可，修改对应的 id 和 key 值为自己 Leancloud 的。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true # 如果你想使用valine，请将值设置为 true</span><br><span class="line">  appId:  # your leancloud appId</span><br><span class="line">  appKey:  # your leancloud appKey</span><br><span class="line">  notify: true # Mail notify</span><br><span class="line">  verify: false # Verify code</span><br><span class="line">  avatar: mm # Gravatar style : mm/identicon/monsterid/wavatar/retro/hide</span><br><span class="line">  placeholder: Just go go # Comment Box placeholder</span><br><span class="line">  guest_info: nick,mail # Comment header info</span><br><span class="line">  pageSize: 10 # comment list page size</span><br></pre></td></tr></table></figure>
 <p>##参考链接<br><a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank" rel="noopener">hexo-theme-indigo</a></p>
 <p><a href="https://valine.js.org/" target="_blank" rel="noopener">Valine</a></p>
 
@@ -188,7 +196,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-01-20T12:23:55.098Z" itemprop="dateUpdated">2019-01-20 20:23:55</time>
+    Last updated: <time datetime="2019-01-20T12:28:31.969Z" itemprop="dateUpdated">2019-01-20 20:28:31</time>
 </span><br>
 
 
@@ -218,7 +226,7 @@
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -228,7 +236,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&source=适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -238,7 +246,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&url=http://yanjin.io/2019/01/20/blogValine/&via=http://yanjin.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&url=http://yanjin.io/2019/01/20/blogValine/&via=http://yanjin.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
@@ -365,7 +373,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -375,7 +383,7 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/20/blogValine/&title=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&source=适用于想更换主题为 hexo-theme-indigo 的朋友，本篇文章可以带你如何正确的配置 hexo-theme-indigo 的评论系统Valine" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
@@ -385,7 +393,7 @@
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hexo-theme-indigo主题博客评论系统Valine配置》 — YanJin's Blog&url=http://yanjin.io/2019/01/20/blogValine/&via=http://yanjin.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《hexo-theme-indigo 博客评论系统 Valine 配置》 — YanJin's Blog&url=http://yanjin.io/2019/01/20/blogValine/&via=http://yanjin.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
