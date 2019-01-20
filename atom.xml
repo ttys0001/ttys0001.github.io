@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yanjin.io/"/>
-  <updated>2018-11-15T02:05:52.236Z</updated>
+  <updated>2018-11-15T13:11:27.474Z</updated>
   <id>http://yanjin.io/</id>
   
   <author>
@@ -15,29 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>携程测试实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/interviewCtrip/"/>
-    <id>http://yanjin.io/2018/11/15/interviewCtrip/</id>
-    <published>2018-11-15T01:42:58.897Z</published>
-    <updated>2018-11-15T02:05:52.236Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="携程测试实习生面经"><a href="#携程测试实习生面经" class="headerlink" title="携程测试实习生面经"></a>携程测试实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 14 日 晚上 6 点</p><p>岗位：携程测试实习生</p><h2 id="HR一面"><a href="#HR一面" class="headerlink" title="HR一面"></a>HR一面</h2><p>1.是否找到了实习，因为捞我的简历起来已经过了一个星期，怕我已经找到实习了</p><p>2.还问我是否愿意接受测试的岗位，因为看到我之前有做过一些开发项目</p><p>3.约技术面试时间</p><h2 id="技术官二面"><a href="#技术官二面" class="headerlink" title="技术官二面"></a>技术官二面</h2><p>1.自我介绍一下</p><p>2.让我依次介绍我的项目干了什么</p><p>3.让我看一段代码，代码就不放出来，可能涉及公司隐私，不难</p><p>4.让我打开携程首页，问我一个机票的界面这里需要测试什么</p><p>然后面试官问我还有什么要问的吗？我就问还要不要继续面试，她说没有了，基本可以了，问我几时可以到岗，最长可以实习多久</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想去携程是因为感觉公司比较大，投测试是因为比较好进，开发岗位的话自己基础不够好很容易给刷，但是还没考虑好去不去携程。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;携程测试实习生面经&quot;&gt;&lt;a href=&quot;#携程测试实习生面经&quot; class=&quot;headerlink&quot; title=&quot;携程测试实习生面经&quot;&gt;&lt;/a&gt;携程测试实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗位&quot; class=&quot;he
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
   
   <entry>
     <title>威胁猎人初级安全实习生面经</title>
@@ -53,6 +30,29 @@
       
       
         &lt;h1 id=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;a href=&quot;#威胁猎人初级安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;/a&gt;威胁猎人初级安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>携程测试实习生面经</title>
+    <link href="http://yanjin.io/2018/11/15/interviewCtrip/"/>
+    <id>http://yanjin.io/2018/11/15/interviewCtrip/</id>
+    <published>2018-11-15T01:42:58.897Z</published>
+    <updated>2018-11-15T02:05:52.236Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="携程测试实习生面经"><a href="#携程测试实习生面经" class="headerlink" title="携程测试实习生面经"></a>携程测试实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 14 日 晚上 6 点</p><p>岗位：携程测试实习生</p><h2 id="HR一面"><a href="#HR一面" class="headerlink" title="HR一面"></a>HR一面</h2><p>1.是否找到了实习，因为捞我的简历起来已经过了一个星期，怕我已经找到实习了</p><p>2.还问我是否愿意接受测试的岗位，因为看到我之前有做过一些开发项目</p><p>3.约技术面试时间</p><h2 id="技术官二面"><a href="#技术官二面" class="headerlink" title="技术官二面"></a>技术官二面</h2><p>1.自我介绍一下</p><p>2.让我依次介绍我的项目干了什么</p><p>3.让我看一段代码，代码就不放出来，可能涉及公司隐私，不难</p><p>4.让我打开携程首页，问我一个机票的界面这里需要测试什么</p><p>然后面试官问我还有什么要问的吗？我就问还要不要继续面试，她说没有了，基本可以了，问我几时可以到岗，最长可以实习多久</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>想去携程是因为感觉公司比较大，投测试是因为比较好进，开发岗位的话自己基础不够好很容易给刷，但是还没考虑好去不去携程。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;携程测试实习生面经&quot;&gt;&lt;a href=&quot;#携程测试实习生面经&quot; class=&quot;headerlink&quot; title=&quot;携程测试实习生面经&quot;&gt;&lt;/a&gt;携程测试实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗位&quot; class=&quot;he
       
     
     </summary>
