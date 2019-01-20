@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yanjin.io/"/>
-  <updated>2018-11-18T14:31:51.689Z</updated>
+  <updated>2018-11-15T02:05:52.236Z</updated>
   <id>http://yanjin.io/</id>
   
   <author>
@@ -17,55 +17,9 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>360企业安全实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/360%E4%BC%81%E4%B8%9A%E5%AE%89%E5%85%A8%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E7%BB%8F/"/>
-    <id>http://yanjin.io/2018/11/15/360企业安全实习生面经/</id>
-    <published>2018-11-15T01:42:58.897Z</published>
-    <updated>2018-11-18T14:31:51.689Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="360企业安全实习生面经"><a href="#360企业安全实习生面经" class="headerlink" title="360企业安全实习生面经"></a>360企业安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 17 日 下午 4 点</p><p>岗位：360企业安全实习生</p><h2 id="技术官面"><a href="#技术官面" class="headerlink" title="技术官面"></a>技术官面</h2><p>1.是否还有课，论文什么时候答辩</p><p>2.看我比较擅长 Python，问我有没有搭过什么系统</p><p>搭过公众号开发的一个查询功能</p><p>3.有没有写过爬虫或者什么漏洞利用工具（ EXP 和 POC ）</p><p>写过 Python 爬虫，抢课代码，没写过 EXP 和 POC </p><p>4.Linux 进程如何查看？</p><p>我回答 ps -a,但是应该回答 ps aux 更好</p><p>5.Windows 安全日志在哪里？</p><p>当时没回答出来</p><p>答案：计算机 - 管理 - 事件查看器 - Windows 日志 - 安全</p><p>6.目前有用过哪些扫描器？</p><p>Nmap、AWVS、sqlmap、BurpSuite</p><p>当时回答 BurpSuite 说没有扫描功能很尴尬，技术官指出来说 BurpSuite 是现在最好用的扫描器，集成了各种功能，抓包解码重放爆破</p><p>7.有没有实习过</p><p>没有实习过，刚找实习，面试官因此就问我过去新环境有没有问题</p><p>我回答之前社团工作了两年，经常与人沟通，适应能力很好</p><p>8.任意文件读取漏洞产生的原理</p><p>下载功能或者读取文件时候没有对权限进行控制，允许它跳转到 WEB 目录</p><p>9.任意文件读取漏洞正常出现在什么功能点？</p><p>下载功能或者读取文件，查看一些文件的时候</p><p>10.XSS 原理</p><p>XSS 有三种类型(反射型、存储型、DOM 型)，原理是因为没有过滤客户端提交的数据，被利用后回显到平台</p><p>11.有没有利用过 XSS 平台</p><p>没有……</p><p>12.目前有接触过什么病毒木马吗</p><p><em>WannaCry</em>病毒</p><p>13.病毒环境有哪些特征？病毒的一些特征（除了勒索软件，比如挖矿有什么特征）</p><p>CPU利用资源特别高、不停的发包</p><p>面试官解释这属于网络行为，挖矿会请求矿池，可以通过抓包的方式观察是不是一直在访问矿池，可以确认是不是有挖矿行为</p><p>本机上可能有蠕虫行为、肯定会扩散，植入一堆挖矿病毒</p><p>本机上以防你删除掉查杀掉，还会有一些自启动服务防止被删除</p><p>14.祖籍在哪里</p><p>15.平时有没有处理过 EXCEL 和 WORD，有没有做过一些数据统计或者数据分析</p><p>有的，用过Python数据分析，EXCEL基本操作快捷键都会</p><p>16.EXCEL函数有用过哪些？</p><p>sum、mid、count、if、lookup</p><p>17.是不是打算走普通实习，要不要考虑走校招，再过两轮面试</p><p>走实习，我就问有没有机会转正，面试官说有，看实习表现</p><p>18.问我有没有用过 Java</p><p>没有</p><p>19.问我有没有考虑过在家那边找工作</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;360企业安全实习生面经&quot;&gt;&lt;a href=&quot;#360企业安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;360企业安全实习生面经&quot;&gt;&lt;/a&gt;360企业安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>威胁猎人初级安全实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/%E5%A8%81%E8%83%81%E7%8C%8E%E4%BA%BA%E5%88%9D%E7%BA%A7%E5%AE%89%E5%85%A8%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E7%BB%8F/"/>
-    <id>http://yanjin.io/2018/11/15/威胁猎人初级安全实习生面经/</id>
-    <published>2018-11-15T01:42:58.897Z</published>
-    <updated>2018-11-15T13:11:27.474Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="威胁猎人初级安全实习生面经"><a href="#威胁猎人初级安全实习生面经" class="headerlink" title="威胁猎人初级安全实习生面经"></a>威胁猎人初级安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 9 日 下午 4 点</p><p>岗位：威胁猎人初级安全实习生</p><h2 id="技术官一面"><a href="#技术官一面" class="headerlink" title="技术官一面"></a>技术官一面</h2><p>技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。</p><p>然后问了我下面几个问题：</p><p>1.OSI 七层模型是哪七层？（没答出来全部，记得一两个）</p><p>2.有没有用过 Linux 系统</p><p>3.Cat 命令和 Grep 命令的使用方法，比如说考了我如何匹配搜索两个 TXT，一个 TXT 文本里面有很多 ip 地址，另外一个 TXT 文本里面包含了很多黑产的监控流量有 ip 地址，发送数据包之类的</p><p>4.是否了解黑产和灰产，让我说说自己知道的</p><p>我回答了猫池，还有物联网 IOT 的肉鸡 DDOS 攻击，打码平台，薅羊毛党啊等等</p><p>然后技术官就跟我介绍了他们这个部门主要做啥</p><h2 id="CTO二面"><a href="#CTO二面" class="headerlink" title="CTO二面"></a>CTO二面</h2><p>当时大佬一进来我就震惊了，我以为一面就可以了，我只是面一个实习生咋还跑出来大佬呢</p><p>1.什么时候开始学安全的（我回答今年年初）</p><p>2.设计一个登陆注册的系统有什么要考虑的地方</p><p>要有验证码功能，而且最好用现在比较难以破解的验证码，比如 Google 和网易的验证码。</p><p>密码也应该有强度要求，然后不能直接明文发生登陆或者注册请求到服务器，要加盐加密传输，数据库存储也应该是加盐加密保存，防止被脱裤之后明文裸奔</p><p>参数还要带有 csfr_token 值防止 CSRF 攻击</p><p>cookie 中要设置 HttpOnly 属性，那么通过 js 脚本将无法读取到 cookie 信息，这样能有效的防止 XSS 攻击</p><p>对于参数的输入要进行参数化参训防止SQL注入</p><p>3.https 能不能被破解</p><p>我说可以，就是在客户端或者服务器端劫持，替换了证明就可以看到 https 明文传输的内容。但是 CTO 指出来这是因为你用了抓包工具，而且还是在网站没有校验证书的情况下，如果校验的话中间人劫持也没用</p><p>4.我简历上学校正方的漏洞是怎么挖到的</p><p>5.自己还有投别的公司拿到 offer 吗？（我说还投了一家教育公司，他就有点怀疑我是不是真的喜欢安全了，这里建议不要回答不相关的）</p><p>6.问我如果数据库被脱裤了，有什么处理方案</p><p>一赶紧溯源攻击，找到入侵者，然后寻找是否这个数据库是否在网上公开，要即可减少被售卖或者公开的机会</p><p>二是告诉用户，提醒用户改密码</p><p>面试的时候，大佬眉头一直紧皱的看着我的简历，让我很害怕</p><h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>HR面就没问啥了，问我期望薪水。我说 4k-5k 然后似乎被嘲笑了哈哈，说实习生工资没有这么高的，进来主要是学东西。</p><p>还问我几时可以到岗，最后是拿到这个实习生 offer 啦！</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;a href=&quot;#威胁猎人初级安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;/a&gt;威胁猎人初级安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>携程测试实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/%E6%90%BA%E7%A8%8B%E6%B5%8B%E8%AF%95%E5%AE%9E%E4%B9%A0%E7%94%9F%E9%9D%A2%E7%BB%8F/"/>
-    <id>http://yanjin.io/2018/11/15/携程测试实习生面经/</id>
+    <link href="http://yanjin.io/2018/11/15/interviewCtrip/"/>
+    <id>http://yanjin.io/2018/11/15/interviewCtrip/</id>
     <published>2018-11-15T01:42:58.897Z</published>
     <updated>2018-11-15T02:05:52.236Z</updated>
     
@@ -86,9 +40,55 @@
   </entry>
   
   <entry>
+    <title>威胁猎人初级安全实习生面经</title>
+    <link href="http://yanjin.io/2018/11/15/interviewThreadHunter/"/>
+    <id>http://yanjin.io/2018/11/15/interviewThreadHunter/</id>
+    <published>2018-11-15T01:42:58.897Z</published>
+    <updated>2018-11-15T13:11:27.474Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="威胁猎人初级安全实习生面经"><a href="#威胁猎人初级安全实习生面经" class="headerlink" title="威胁猎人初级安全实习生面经"></a>威胁猎人初级安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 9 日 下午 4 点</p><p>岗位：威胁猎人初级安全实习生</p><h2 id="技术官一面"><a href="#技术官一面" class="headerlink" title="技术官一面"></a>技术官一面</h2><p>技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。</p><p>然后问了我下面几个问题：</p><p>1.OSI 七层模型是哪七层？（没答出来全部，记得一两个）</p><p>2.有没有用过 Linux 系统</p><p>3.Cat 命令和 Grep 命令的使用方法，比如说考了我如何匹配搜索两个 TXT，一个 TXT 文本里面有很多 ip 地址，另外一个 TXT 文本里面包含了很多黑产的监控流量有 ip 地址，发送数据包之类的</p><p>4.是否了解黑产和灰产，让我说说自己知道的</p><p>我回答了猫池，还有物联网 IOT 的肉鸡 DDOS 攻击，打码平台，薅羊毛党啊等等</p><p>然后技术官就跟我介绍了他们这个部门主要做啥</p><h2 id="CTO二面"><a href="#CTO二面" class="headerlink" title="CTO二面"></a>CTO二面</h2><p>当时大佬一进来我就震惊了，我以为一面就可以了，我只是面一个实习生咋还跑出来大佬呢</p><p>1.什么时候开始学安全的（我回答今年年初）</p><p>2.设计一个登陆注册的系统有什么要考虑的地方</p><p>要有验证码功能，而且最好用现在比较难以破解的验证码，比如 Google 和网易的验证码。</p><p>密码也应该有强度要求，然后不能直接明文发生登陆或者注册请求到服务器，要加盐加密传输，数据库存储也应该是加盐加密保存，防止被脱裤之后明文裸奔</p><p>参数还要带有 csfr_token 值防止 CSRF 攻击</p><p>cookie 中要设置 HttpOnly 属性，那么通过 js 脚本将无法读取到 cookie 信息，这样能有效的防止 XSS 攻击</p><p>对于参数的输入要进行参数化参训防止SQL注入</p><p>3.https 能不能被破解</p><p>我说可以，就是在客户端或者服务器端劫持，替换了证明就可以看到 https 明文传输的内容。但是 CTO 指出来这是因为你用了抓包工具，而且还是在网站没有校验证书的情况下，如果校验的话中间人劫持也没用</p><p>4.我简历上学校正方的漏洞是怎么挖到的</p><p>5.自己还有投别的公司拿到 offer 吗？（我说还投了一家教育公司，他就有点怀疑我是不是真的喜欢安全了，这里建议不要回答不相关的）</p><p>6.问我如果数据库被脱裤了，有什么处理方案</p><p>一赶紧溯源攻击，找到入侵者，然后寻找是否这个数据库是否在网上公开，要即可减少被售卖或者公开的机会</p><p>二是告诉用户，提醒用户改密码</p><p>面试的时候，大佬眉头一直紧皱的看着我的简历，让我很害怕</p><h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>HR面就没问啥了，问我期望薪水。我说 4k-5k 然后似乎被嘲笑了哈哈，说实习生工资没有这么高的，进来主要是学东西。</p><p>还问我几时可以到岗，最后是拿到这个实习生 offer 啦！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;a href=&quot;#威胁猎人初级安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;威胁猎人初级安全实习生面经&quot;&gt;&lt;/a&gt;威胁猎人初级安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>360企业安全实习生面经</title>
+    <link href="http://yanjin.io/2018/11/15/interview360/"/>
+    <id>http://yanjin.io/2018/11/15/interview360/</id>
+    <published>2018-11-15T01:42:58.897Z</published>
+    <updated>2018-11-18T14:31:51.689Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="360企业安全实习生面经"><a href="#360企业安全实习生面经" class="headerlink" title="360企业安全实习生面经"></a>360企业安全实习生面经</h1><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 17 日 下午 4 点</p><p>岗位：360企业安全实习生</p><h2 id="技术官面"><a href="#技术官面" class="headerlink" title="技术官面"></a>技术官面</h2><p>1.是否还有课，论文什么时候答辩</p><p>2.看我比较擅长 Python，问我有没有搭过什么系统</p><p>搭过公众号开发的一个查询功能</p><p>3.有没有写过爬虫或者什么漏洞利用工具（ EXP 和 POC ）</p><p>写过 Python 爬虫，抢课代码，没写过 EXP 和 POC </p><p>4.Linux 进程如何查看？</p><p>我回答 ps -a,但是应该回答 ps aux 更好</p><p>5.Windows 安全日志在哪里？</p><p>当时没回答出来</p><p>答案：计算机 - 管理 - 事件查看器 - Windows 日志 - 安全</p><p>6.目前有用过哪些扫描器？</p><p>Nmap、AWVS、sqlmap、BurpSuite</p><p>当时回答 BurpSuite 说没有扫描功能很尴尬，技术官指出来说 BurpSuite 是现在最好用的扫描器，集成了各种功能，抓包解码重放爆破</p><p>7.有没有实习过</p><p>没有实习过，刚找实习，面试官因此就问我过去新环境有没有问题</p><p>我回答之前社团工作了两年，经常与人沟通，适应能力很好</p><p>8.任意文件读取漏洞产生的原理</p><p>下载功能或者读取文件时候没有对权限进行控制，允许它跳转到 WEB 目录</p><p>9.任意文件读取漏洞正常出现在什么功能点？</p><p>下载功能或者读取文件，查看一些文件的时候</p><p>10.XSS 原理</p><p>XSS 有三种类型(反射型、存储型、DOM 型)，原理是因为没有过滤客户端提交的数据，被利用后回显到平台</p><p>11.有没有利用过 XSS 平台</p><p>没有……</p><p>12.目前有接触过什么病毒木马吗</p><p><em>WannaCry</em>病毒</p><p>13.病毒环境有哪些特征？病毒的一些特征（除了勒索软件，比如挖矿有什么特征）</p><p>CPU利用资源特别高、不停的发包</p><p>面试官解释这属于网络行为，挖矿会请求矿池，可以通过抓包的方式观察是不是一直在访问矿池，可以确认是不是有挖矿行为</p><p>本机上可能有蠕虫行为、肯定会扩散，植入一堆挖矿病毒</p><p>本机上以防你删除掉查杀掉，还会有一些自启动服务防止被删除</p><p>14.祖籍在哪里</p><p>15.平时有没有处理过 EXCEL 和 WORD，有没有做过一些数据统计或者数据分析</p><p>有的，用过Python数据分析，EXCEL基本操作快捷键都会</p><p>16.EXCEL函数有用过哪些？</p><p>sum、mid、count、if、lookup</p><p>17.是不是打算走普通实习，要不要考虑走校招，再过两轮面试</p><p>走实习，我就问有没有机会转正，面试官说有，看实习表现</p><p>18.问我有没有用过 Java</p><p>没有</p><p>19.问我有没有考虑过在家那边找工作</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;360企业安全实习生面经&quot;&gt;&lt;a href=&quot;#360企业安全实习生面经&quot; class=&quot;headerlink&quot; title=&quot;360企业安全实习生面经&quot;&gt;&lt;/a&gt;360企业安全实习生面经&lt;/h1&gt;&lt;h2 id=&quot;面试时间及岗位&quot;&gt;&lt;a href=&quot;#面试时间及岗
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>金山服务端开发实习面试总结</title>
-    <link href="http://yanjin.io/2018/05/14/%E9%87%91%E5%B1%B1%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://yanjin.io/2018/05/14/金山服务端开发实习面试总结/</id>
+    <link href="http://yanjin.io/2018/05/14/interWPS/"/>
+    <id>http://yanjin.io/2018/05/14/interWPS/</id>
     <published>2018-05-14T02:42:19.000Z</published>
     <updated>2018-05-14T06:06:40.000Z</updated>
     
@@ -111,8 +111,8 @@
   
   <entry>
     <title>如何写一篇永远保存在这个世界中的文章</title>
-    <link href="http://yanjin.io/2018/04/26/%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E7%AF%87%E6%B0%B8%E8%BF%9C%E4%BF%9D%E5%AD%98%E5%9C%A8%E8%BF%99%E4%B8%AA%E4%B8%96%E7%95%8C%E4%B8%AD%E7%9A%84%E6%96%87%E7%AB%A0/"/>
-    <id>http://yanjin.io/2018/04/26/如何写一篇永远保存在这个世界中的文章/</id>
+    <link href="http://yanjin.io/2018/04/26/foreverArticle/"/>
+    <id>http://yanjin.io/2018/04/26/foreverArticle/</id>
     <published>2018-04-26T03:41:18.000Z</published>
     <updated>2018-04-27T12:28:12.000Z</updated>
     
@@ -134,8 +134,8 @@
   
   <entry>
     <title>微信公众号推文永久链接爬虫</title>
-    <link href="http://yanjin.io/2018/04/26/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E6%8E%A8%E6%96%87%E6%B0%B8%E4%B9%85%E9%93%BE%E6%8E%A5%E7%88%AC%E8%99%AB/"/>
-    <id>http://yanjin.io/2018/04/26/微信公众号推文永久链接爬虫/</id>
+    <link href="http://yanjin.io/2018/04/26/wechatArticleSpider/"/>
+    <id>http://yanjin.io/2018/04/26/wechatArticleSpider/</id>
     <published>2018-04-26T03:41:18.000Z</published>
     <updated>2018-05-06T15:12:02.000Z</updated>
     
