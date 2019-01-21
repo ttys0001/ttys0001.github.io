@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Django 执行原始 SQL 语句参数化查询-预防 SQL 注入 | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Django">
+    <meta name="description" content="Django 原始 SQL 语句参数化查询，包括 like 模糊查询">
+<meta name="keywords" content="Django">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django 执行原始 SQL 语句参数化查询-预防 SQL 注入">
+<meta property="og:url" content="http://yanjin.io/2019/01/21/performingRawSQLqueries/index.html">
+<meta property="og:site_name" content="YanJin&#39;s Blog">
+<meta property="og:description" content="Django 原始 SQL 语句参数化查询，包括 like 模糊查询">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-21T12:02:58.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django 执行原始 SQL 语句参数化查询-预防 SQL 注入">
+<meta name="twitter:description" content="Django 原始 SQL 语句参数化查询，包括 like 模糊查询">
+    
+        <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Jin</h5>
+          <a href="mailto:yimjin@163.com" title="yimjin@163.com" class="mail">yimjin@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ttys0001" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Django 执行原始 SQL 语句参数化查询-预防 SQL 注入</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Django 执行原始 SQL 语句参数化查询-预防 SQL 注入</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-21T12:02:17.000Z" itemprop="datePublished" class="page-time">
+  2019-01-21
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缘由"><span class="post-toc-number">1.</span> <span class="post-toc-text">缘由</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实践"><span class="post-toc-number">2.</span> <span class="post-toc-text">实践</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-创建-SQL-文件"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1.创建 SQL 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-读取-SQL-文件"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2.读取 SQL 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-参数赋值"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3.参数赋值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-执行-SQL"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4.执行 SQL</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#官方样例代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">官方样例代码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考链接</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-performingRawSQLqueries"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Django 执行原始 SQL 语句参数化查询-预防 SQL 注入</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-21 20:02:17" datetime="2019-01-21T12:02:17.000Z"  itemprop="datePublished">2019-01-21</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Django 原始 SQL 语句参数化查询，包括 like 模糊查询<br><a id="more"></a></p>
+<h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>实习内容：开发一个数据库运维系统</p>
+<p>需求：因为我们操作的是远程的数据库，包括Oracle、MySQL、MongoDB，有大量的查询语句需要直接用到raw SQL语句，这里不适合Django的模型 ORM 操作</p>
+<p>后端语言：Python3</p>
+<p>框架：Django2.0 &amp; Django REST framework</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><h3 id="1-创建-SQL-文件"><a href="#1-创建-SQL-文件" class="headerlink" title="1.创建 SQL 文件"></a>1.创建 SQL 文件</h3><p>我们以Table 搜素为例，首先是创建一个 SQL 文件，我们通过直接调用文件中的 SQL 语句增加代码整洁性。比如说，对于 Oracle 下的所有 SQL 文件我都会放在一个文件夹中。</p>
+<p>需要搜素的参数值我们设置为 %s，如下面的代码所示，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SELECT OWNER,TABLE_NAME,TABLESPACE_NAME,STATUS,LOGGING,NUM_ROWS,BLOCKS,DEGREE,LAST_ANALYZED,TEMPORARY <span class="keyword">from</span> dba_tables WHERE owner like %s And table_name like %s order by OWNER,TABLE_NAME asc</span><br><span class="line">^EOF</span><br></pre></td></tr></table></figure>
+<p>如果SQL 语句此时里面有需要用到的百分号,需要双写百分号，如下面的代码所示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT foo FROM bar WHERE baz = <span class="string">'30%%'</span> AND id = %s</span><br></pre></td></tr></table></figure>
+<h3 id="2-读取-SQL-文件"><a href="#2-读取-SQL-文件" class="headerlink" title="2.读取 SQL 文件"></a>2.读取 SQL 文件</h3><p>split()：用于拆分字符串。通过指定分隔符对字符串进行切片，并返回分割后的字符串列表（list）。 </p>
+<p>strip()：用于移除字符串头尾指定的字符（默认为空格或换行符）或字符序列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_sql</span><span class="params">(sql_file)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> open(sql_file, <span class="string">'r'</span>) <span class="keyword">as</span> fr:</span><br><span class="line">        sql = fr.read().split(<span class="string">'^EOF'</span>)[<span class="number">0</span>].strip()</span><br><span class="line">    <span class="keyword">return</span> sql</span><br><span class="line">    </span><br><span class="line">sql_file = <span class="string">"oracle/sql/index_parameters_sessions_detail_search.sql"</span></span><br><span class="line">sql = get_sql(sql_file)</span><br></pre></td></tr></table></figure>
+<h3 id="3-参数赋值"><a href="#3-参数赋值" class="headerlink" title="3.参数赋值"></a>3.参数赋值</h3><p>like 模糊参数需要将搜素的参数设置格式为 %test%，test修改为我们搜素的值噢</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">params = [<span class="string">"%&#123;&#125;%"</span>.format(owner.upper()), <span class="string">"%&#123;&#125;%"</span>.format(table_name.upper())]</span><br></pre></td></tr></table></figure>
+<p>如果不是like 查询,我们的参数的形式为 list 即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">params = [username]</span><br></pre></td></tr></table></figure>
+<h3 id="4-执行-SQL"><a href="#4-执行-SQL" class="headerlink" title="4.执行 SQL"></a>4.执行 SQL</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cur.execute(sql, params)</span><br></pre></td></tr></table></figure>
+<h2 id="官方样例代码"><a href="#官方样例代码" class="headerlink" title="官方样例代码"></a>官方样例代码</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> connection</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_custom_sql</span><span class="params">(self)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> connection.cursor() <span class="keyword">as</span> cursor:</span><br><span class="line">        cursor.execute(<span class="string">"UPDATE bar SET foo = 1 WHERE baz = %s"</span>, [self.baz])</span><br><span class="line">        cursor.execute(<span class="string">"SELECT foo FROM bar WHERE baz = %s"</span>, [self.baz])</span><br><span class="line">        row = cursor.fetchone()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> row</span><br></pre></td></tr></table></figure>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://docs.djangoproject.com/en/2.1/topics/db/sql/#executing-custom-sql-directly" target="_blank" rel="noopener">Django 文档</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-01-21T12:02:58.034Z" itemprop="dateUpdated">2019-01-21 20:02:58</time>
+</span><br>
+
+
+        
+        <br>原始链接：<a href="/2019/01/21/performingRawSQLqueries/" target="_blank" rel="external">http://yanjin.io/2019/01/21/performingRawSQLqueries/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yanjin.io">
+            <img src="/img/avatar.png" alt="Yan Jin">
+            Yan Jin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&title=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&title=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&source=Django 原始 SQL 语句参数化查询，包括 like 模糊查询" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/01/21/performingRawSQLqueries/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/20/blogValine/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">hexo-theme-indigo 博客评论系统 Valine 配置</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VhFrgXmsecYpTf8oE106WPQs-gzGzoHsz",
+            appKey: "H1VtQ28JkYV2JOq6TP8HdImT",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        
+<footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
+            <span>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&title=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&title=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&source=Django 原始 SQL 语句参数化查询，包括 like 模糊查询" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/01/21/performingRawSQLqueries/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django 执行原始 SQL 语句参数化查询-预防 SQL 注入》 — YanJin's Blog&url=http://yanjin.io/2019/01/21/performingRawSQLqueries/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/01/21/performingRawSQLqueries/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3azW6EMAxFYd7/pel2KhU416YjJT5ZjQY65GPh+ifHgdf5sa6ukjuv7r+6+vKSIUPGsozzdl1trrbdq01fwcjeZMiQMYdRC4v34ZL/FSE97FmGDBkyGsGX3y9DhgwZ7zI47z4NlSFDhgzOIEVsXFiGxeqXanEZMmQsyOBd9+9//pf5hgwZMpZinOHqFKWkxK0tGTJk7M3gAe7lFC0tUMnhDxkyZGzK4A0yPp5M23CdkWfQpZMhQ8ayjH4BSUIwb/Tzlt8f38iQIWMAo3aEgofUGjV4rTJkyBjASMFps4w34MjLlSFDxjRG2qbvpH3pU4qtPRkyZGzE6BzqSjdKGmo8xfx1VYYMGQMY6aiAJJdBmwzzHkaYMmTI2JpBfvQ+7PZTyRZMhgwZWzM67a30kAT/XAvQMmTI2JXBh5fpSDLtiXUKYBkyZMxhvHX0IQ3EnQZfkOHKkCFjWUbt8TVYEEAbKakMGTJ2ZfDxZMrgQRMNAO5/U4YMGQMY6bb6YfStwliGDBlzGLUmPu/M882l/wZkyJAxh9EvRMlGCZ7DZMiQMYFxhuvAqzawTF8ZylhlyJCxOKOzLd7ET5NFvvUYI0OGjGUZtSYab5mlobMYcGXIkDGAUTthlQ4mO4c2HpJOGTJkyAg/P4wbS+nmQzktQ4YMGeED+Ddko+hOGTJkDGCQ8Efaam8dueAH1GTIkDGBwUvHtOmfHp5onRmRIUPGnowftTDbGd6dtCwAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
