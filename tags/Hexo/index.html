@@ -14,7 +14,7 @@
     
     
     
-    <title>Tags: Hex | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <title>Tags: Hexo | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
@@ -24,7 +24,7 @@
     <meta name="description" content="程序员，博客，终身学习">
 <meta property="og:type" content="website">
 <meta property="og:title" content="YanJin&#39;s Blog">
-<meta property="og:url" content="http://yanjin.io/tags/Hex/index.html">
+<meta property="og:url" content="http://yanjin.io/tags/Hexo/index.html">
 <meta property="og:site_name" content="YanJin&#39;s Blog">
 <meta property="og:description" content="程序员，博客，终身学习">
 <meta property="og:locale" content="en">
@@ -111,7 +111,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">Tags: Hex</div>
+        <div class="flex-col header-title ellipsis">Tags: Hexo</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -133,7 +133,7 @@
 <header class="content-header tags-header">
 
     <div class="container fade-scale">
-        <h1 class="title">Tags: Hex</h1>
+        <h1 class="title">Tags: Hexo</h1>
         <h5 class="subtitle">
             
         </h5>
@@ -146,23 +146,23 @@
             ">All</a>
         
 
-            <a href="/tags/面试/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">面试</a>
+            <a href="/tags/Hexo/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light active">Hexo</a>
 
         
 
-            <a href="/tags/区块链/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">区块链</a>
+            <a href="/tags/面试/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light">面试</a>
 
         
 
-            <a href="/tags/Hex/" style="-webkit-order:1;order:1" class="tags-list-item waves-effect waves-button waves-light active">Hex</a>
+            <a href="/tags/区块链/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">区块链</a>
 
         
 
-            <a href="/tags/Django/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">Django</a>
+            <a href="/tags/Django/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">Django</a>
 
         
 
-            <a href="/tags/Python爬虫/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">Python爬虫</a>
+            <a href="/tags/Python爬虫/" style="-webkit-order:4;order:4" class="tags-list-item waves-effect waves-button waves-light">Python爬虫</a>
 
         
     </nav>
@@ -180,6 +180,38 @@
     
             <div class="waterfall">
           
+
+            <div class="waterfall-item">
+  <article class="article-card archive-article">
+    <div class="post-meta">
+      <time class="post-time" title="2019-01-24 20:02:17" datetime="2019-01-24T12:02:17.000Z"  itemprop="datePublished">2019-01-24</time>
+
+      
+
+
+    </div>
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/01/24/djangoToken/">Django REST framework 利用 Token 实现登陆API</a>
+    </h3>
+  
+
+
+
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+    </div>
+    
+  </article>
+</div>
+
+        
 
             <div class="waterfall-item">
   <article class="article-card archive-article">
@@ -204,7 +236,7 @@
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hex/">Hex</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
     </div>
     
@@ -221,28 +253,21 @@
         
 <footer class="footer">
     <div class="top">
-        
-<p>
-    <span id="busuanzi_container_site_uv" style='display:none'>
-        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
-    </span>
-    <span id="busuanzi_container_site_pv" style='display:none'>
-        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
-    </span>
-</p>
-
-
+        <%- partial('plugins/site-visit') %>
         <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <% if ((config.feed) && (config.feed.path.length)) { %>
+                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <% } %>
+            <span><%- __('footer.license') %></span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>Yan Jin &copy; 2017 - 2019</span>
+        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
             <span>
-                
+                <% if(theme.ICP_license) {%>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
+                <% } %>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
             </span>
         </p>
     </div>
@@ -257,7 +282,7 @@
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/tags/Hex/&title=YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/tags/Hexo/&title=YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -267,22 +292,22 @@
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/tags/Hex/&title=YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/tags/Hexo/&title=YanJin's Blog&source=程序员，博客，终身学习" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/tags/Hex/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/tags/Hexo/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=YanJin's Blog&url=http://yanjin.io/tags/Hex/&via=http://yanjin.io" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=YanJin's Blog&url=http://yanjin.io/tags/Hexo/&via=http://yanjin.io" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/tags/Hex/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/tags/Hexo/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -293,7 +318,7 @@
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAACWCAAAAAAZai4+AAABYElEQVR42u3a0Q7CIAxG4b3/S8/E2yk7f0GT0cPVMnV8mIyWwnHgdr7b9frbp9d2/KLJkrUR6xy263c4jqM/0GXJasmamRTI2837kiVLFg/AabSVJUvWWlYtjZYlSxZhkaR5Zo35w1xelqwtWDOFpPT6T/UtWbIexTpLrZYQB8+XJasZK12mkvt8ADdDkiWrDYu/0uNlKhkMLxbLktWNhQo6+MfjiWC8TL15vixZDVhkw7K2nZmGbRSwZclqxqoF3VUBXpasPqxVpZ80DE/9T7JkbceqJcfkOAJJqRfk8rJkbcHiYZUXdtMt0ps9H1myGrD4NMGP9cwXnmTJ6saaOWrAw3Y6JFmyurHSc3FrJxGecMuS1YE1c+SOU4JtFVmyGrN4qSg4TlcqSMmSJStNhXnpli9oZcmShV7dsPDE7xRDtSxZG7F40lxLjnm/smT1ZNUKSaSbtOC7oL4lS9bzWC+Kp+RcgqIHfgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3ay4rDMAwF0P7/T2dgVoUhyZUUmzAcr0LT1CddCOvx+cTr+F3f19/r+qm/30meHS1cXNwx97hc+QbXT53dzQ24uLj7uUnwSgJZ725iwMXFfSc3D0b5KQUXF/c/cSfHoOtrXFzc93DzRCXBJazluRouLu6A2yuYPnu9vL6Li4v7UFdiHuDy4ki0Iy4u7hZurxhaTVeSFkuhXIKLi7uRO9m+OpaRB8HCTAcuLu5D3GviJIHJBzUKfxYuLu4W7nVAyROV6sv3iqe4uLg7uXkYyn+i1xRptlJwcXEf5c4HLHqHpF7jFhcXdw+3mq70iNXPy/80Li7uAm6ehCQHkerdUa6Gi4u7gFttqU4OLnkr5TSQ4eLibuf2mq+90Y3qi+Hi4u7kTlYvCPZKM7i4uDu5eahK3jsH5WXT0+QHFxd3GbdXGM0D2SRqRhJcXNwF3KO4Ju3SJGDdlE5wcXG3cCdhpTqukbRP8tfAxcVdzZ1s3Guj9gqsuLi4+7nV4DVvqeYNntNpEVxc3Ndwq4WSXrP2JmPDxcV9DbeaCFWHNgozI7i4uFu4eUozOdwkofAmNcLFxd3CrRZMq8MTeZLzWJsWFxe3z/0BZ7ZN1HMxm5oAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 

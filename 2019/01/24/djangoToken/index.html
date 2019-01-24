@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>Django REST framework 利用 Token 实现登陆API | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django REST framework 利用 Token 实现登陆API">
+<meta property="og:url" content="http://yanjin.io/2019/01/24/djangoToken/index.html">
+<meta property="og:site_name" content="YanJin&#39;s Blog">
+<meta property="og:description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-01-24T11:08:32.980Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django REST framework 利用 Token 实现登陆API">
+<meta name="twitter:description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
+    
+        <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Jin</h5>
+          <a href="mailto:yimjin@163.com" title="yimjin@163.com" class="mail">yimjin@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ttys0001" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Django REST framework 利用 Token 实现登陆API</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Django REST framework 利用 Token 实现登陆API</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-01-24T12:02:17.000Z" itemprop="datePublished" class="page-time">
+  2019-01-24
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#版本说明"><span class="post-toc-number">1.</span> <span class="post-toc-text">版本说明</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Django-后端设置"><span class="post-toc-number">2.</span> <span class="post-toc-text">Django 后端设置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#settings-py"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">settings.py</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#auth-py"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">auth.py</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#登陆函数"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">登陆函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#urls-py"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">urls.py</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前端请求格式"><span class="post-toc-number">3.</span> <span class="post-toc-text">前端请求格式</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-djangoToken"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Django REST framework 利用 Token 实现登陆API</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-01-24 20:02:17" datetime="2019-01-24T12:02:17.000Z"  itemprop="datePublished">2019-01-24</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。<br><a id="more"></a></p>
+<h2 id="版本说明"><a href="#版本说明" class="headerlink" title="版本说明"></a>版本说明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Python3</span><br><span class="line">Django==2.0</span><br><span class="line">rest_framewor==3.9</span><br></pre></td></tr></table></figure>
+<h2 id="Django-后端设置"><a href="#Django-后端设置" class="headerlink" title="Django 后端设置"></a>Django 后端设置</h2><h3 id="settings-py"><a href="#settings-py" class="headerlink" title="settings.py"></a>settings.py</h3><p>假如 Django 工程名为 platform，那么项目根目录下会有一个 platform 文件夹，首先需要修改工程的配置文件settings.py文件，在 INSTALLED_APPS 中添加了两个模块，rest_framework 和 rest_framework.authtoken。还增加了 REST_FRAMEWORK 的配置内容。</p>
+<p>里面有三个属性，可以从英文名看出来是什么意思。DEFAULT_AUTHENTICATION_CLASSES 指的是默认认证类，即确定你是谁。代码里面添加了两个类，第一个表示的是BasicAuthentication认证方式，即传统的账号密码登陆。第二个是自己重写了继承 rest_framework.authentication.BaseAuthentication 这个类的内容，在这个 ExpiringTokenAuthentication 类中实现从缓存中获取 Token，如果没有再从数据库中取出来。</p>
+<p>DEFAULT_PERMISSION_CLASSES 指的是默认访问权限，在确定了你是谁之后，还要确定一下你的权限，即你能干什么，官方名字叫做鉴权。这里设置了所有 API 的默认权限都必须是认证之后才可以访问。</p>
+<p>DEFAULT_RENDERER_CLASSES 指的是默认返回类型，设置为 rest_framework.renderers.JSONRenderer 的目的是只返回 JSON 格式，之前框架自带的 API 页面就没有了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [ </span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">    <span class="string">'rest_framework'</span>,</span><br><span class="line">    <span class="string">'rest_framework.authtoken'</span>,</span><br><span class="line">    <span class="string">'account'</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">REST_FRAMEWORK = &#123;</span><br><span class="line">    <span class="string">'DEFAULT_AUTHENTICATION_CLASSES'</span>: [</span><br><span class="line">        <span class="string">'rest_framework.authentication.BasicAuthentication'</span>,</span><br><span class="line">        <span class="string">'account.auth.ExpiringTokenAuthentication'</span>,</span><br><span class="line">        <span class="comment">#'rest_framework.authentication.TokenAuthentication',</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="string">"DEFAULT_PERMISSION_CLASSES"</span>: [</span><br><span class="line">        <span class="string">"rest_framework.permissions.IsAuthenticated"</span>,</span><br><span class="line">    ],</span><br><span class="line">    <span class="string">'DEFAULT_RENDERER_CLASSES'</span>: (</span><br><span class="line">        <span class="string">'rest_framework.renderers.JSONRenderer'</span>,</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="auth-py"><a href="#auth-py" class="headerlink" title="auth.py"></a>auth.py</h3><p>下面是 ExpiringTokenAuthentication 这个类的具体实现代码，代码经测试可运行。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line">\account\auth.py</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pytz</span><br><span class="line"><span class="keyword">from</span> django.utils.translation <span class="keyword">import</span> ugettext_lazy <span class="keyword">as</span> _</span><br><span class="line"><span class="keyword">from</span> django.core.cache <span class="keyword">import</span> cache</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">from</span> rest_framework.authentication <span class="keyword">import</span> BaseAuthentication</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> exceptions</span><br><span class="line"><span class="keyword">from</span> rest_framework.authtoken.models <span class="keyword">import</span> Token</span><br><span class="line"><span class="keyword">from</span> rest_framework <span class="keyword">import</span> HTTP_HEADER_ENCODING</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取请求头里的 token 信息</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_authorization_header</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Return request's 'Authorization:' header, as a bytestring.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Hide some test client ickyness where the header can be unicode.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    auth = request.META.get(<span class="string">'HTTP_AUTHORIZATION'</span>, <span class="string">b''</span>)</span><br><span class="line">    <span class="keyword">if</span> isinstance(auth, type(<span class="string">''</span>)):</span><br><span class="line">        <span class="comment"># Work around django test client oddness</span></span><br><span class="line">        auth = auth.encode(HTTP_HEADER_ENCODING)</span><br><span class="line">    <span class="keyword">return</span> auth</span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义的 ExpiringTokenAuthentication 认证方式</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExpiringTokenAuthentication</span><span class="params">(BaseAuthentication)</span>:</span></span><br><span class="line">    model = Token</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">authenticate</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        auth = get_authorization_header(request)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> auth:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            token = auth.decode()</span><br><span class="line">        <span class="keyword">except</span> UnicodeError:</span><br><span class="line">            msg = _(<span class="string">'Invalid token header. Token string should not contain invalid characters.'</span>)</span><br><span class="line">            <span class="keyword">raise</span> exceptions.AuthenticationFailed(msg)</span><br><span class="line">        <span class="keyword">return</span> self.authenticate_credentials(token)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">authenticate_credentials</span><span class="params">(self, key)</span>:</span></span><br><span class="line">        <span class="comment"># 增加了缓存机制</span></span><br><span class="line">      <span class="comment"># 首先先从缓存中查找</span></span><br><span class="line">        token_cache = <span class="string">'token_'</span> + key</span><br><span class="line">        cache_user = cache.get(token_cache)</span><br><span class="line">        <span class="comment">#print(cache)</span></span><br><span class="line">        <span class="keyword">if</span> cache_user:</span><br><span class="line">            print(<span class="string">'cache token get!'</span>)</span><br><span class="line">            <span class="keyword">return</span> (cache_user.user, cache_user)  <span class="comment"># 首先查看 token 是否在缓存中，若存在，直接返回用户</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            token = self.model.objects.get(key=key[<span class="number">6</span>:])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">except</span> self.model.DoesNotExist:</span><br><span class="line">            <span class="keyword">raise</span> exceptions.AuthenticationFailed(<span class="string">'Invalid request'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> token.user.is_active:</span><br><span class="line">            <span class="keyword">raise</span> exceptions.AuthenticationFailed(<span class="string">'Invalid user'</span>)</span><br><span class="line"></span><br><span class="line">        utc_now = datetime.datetime.utcnow()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (utc_now.replace(tzinfo=pytz.timezone(<span class="string">"UTC"</span>)) - token.created.replace(tzinfo=pytz.timezone(<span class="string">"UTC"</span>))).days &gt; <span class="number">1</span>:  <span class="comment"># 设定存活时间 1 天</span></span><br><span class="line">            <span class="keyword">raise</span> exceptions.AuthenticationFailed(<span class="string">'Invalid token'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> token:</span><br><span class="line">            token_cache = <span class="string">'token_'</span> + key</span><br><span class="line">            cache.set(token_cache, token, <span class="number">24</span> * <span class="number">1</span> * <span class="number">60</span> * <span class="number">60</span>)  <span class="comment"># 添加 token_xxx 到缓存，缓存保存时间为 1 天</span></span><br><span class="line">        <span class="keyword">return</span> (token.user, token)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">authenticate_header</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Token'</span></span><br></pre></td></tr></table></figure></p>
+<p>从上面这个代码可以看出来，我们后端所有的 API 请求，都会从请求的 Headers 中取出来 AUTHORIZATION 字段</p>
+<h3 id="登陆函数"><a href="#登陆函数" class="headerlink" title="登陆函数"></a>登陆函数</h3><p>代码中加有注释，很好理解，主要工作就是通过 user 拿到 Token，然后删除 Token，再重新创建它。可以看到登陆函数加了 permission_classes 和 authentication_classes，设置为空就是为了覆盖之前的默认设置，所有人不需要 Token 值也可以访问这个登陆 API。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> rest_framework.views <span class="keyword">import</span> APIView</span><br><span class="line"><span class="keyword">from</span> rest_framework.authtoken.models <span class="keyword">import</span> Token</span><br><span class="line"><span class="keyword">from</span> django.contrib.auth <span class="keyword">import</span> authenticate</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LoginView</span><span class="params">(APIView)</span>:</span></span><br><span class="line"></span><br><span class="line">    permission_classes = []</span><br><span class="line">    authentication_classes = []</span><br><span class="line"></span><br><span class="line">   </span><br><span class="line"><span class="meta">    @get_request_args</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">post</span><span class="params">(self, request, args)</span>:</span></span><br><span class="line">        print(args)</span><br><span class="line">        username = args.get(<span class="string">"username"</span>)</span><br><span class="line">        password = args.get(<span class="string">"password"</span>)</span><br><span class="line">        print(username)</span><br><span class="line">        print(password)</span><br><span class="line">        user = authenticate(username=username, password=password)</span><br><span class="line">        <span class="keyword">if</span> user <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> user.is_active:</span><br><span class="line">            <span class="comment"># 更新token值</span></span><br><span class="line">            token = Token.objects.get(user=user)</span><br><span class="line">            token.delete()</span><br><span class="line">            token = Token.objects.create(user=user)</span><br><span class="line"></span><br><span class="line">            success_content = &#123;</span><br><span class="line">                <span class="string">"token"</span>: token.key,</span><br><span class="line">            &#125;</span><br><span class="line">            test = json.dumps(success_content)</span><br><span class="line">            <span class="comment">#return JsonResponse(success_content, status=status.HTTP_200_OK)</span></span><br><span class="line">            <span class="keyword">return</span> Response(success_content, status=status.HTTP_200_OK)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            error_content = &#123;</span><br><span class="line">                <span class="string">"detail"</span>: <span class="string">'Invalid username or password'</span>,</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> Response(error_content, status=status.HTTP_401_UNAUTHORIZED)</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_request_args</span><span class="params">(func)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_get_request_args</span><span class="params">(self, request)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">            args = request.GET</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            body = request.body</span><br><span class="line">            <span class="keyword">if</span> body:</span><br><span class="line">                <span class="keyword">try</span>:</span><br><span class="line">                    args = json.loads(body)</span><br><span class="line">                <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                    print(e)</span><br><span class="line">                    <span class="comment"># return makeJsonResponse(status=StatusCode.EXECUTE_FAIL, message=str(e))</span></span><br><span class="line">                    args = request.POST</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                args = request.POST</span><br><span class="line">        <span class="keyword">return</span> func(self, request, args)</span><br><span class="line">    <span class="keyword">return</span> _get_request_args</span><br></pre></td></tr></table></figure>
+<h3 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h3><p>利用 Django REST framework 的 APIView 生成对应的API</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> account <span class="keyword">import</span> api</span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">'login-demo/'</span>, api.LoginView.as_view()),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="前端请求格式"><a href="#前端请求格式" class="headerlink" title="前端请求格式"></a>前端请求格式</h2><p>我们前端所有的 API 请求，都需要在请求的 Headers 中添加 AUTHORIZATION 字段，AUTHORIZATION 的值为 Token 加一个空格，再加上真正的 Token 值。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AUTHORIZATION:Token 8ba11785d9700b7bc1a311428e6c3a3fe16e9145</span><br></pre></td></tr></table></figure></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-01-24T11:08:32.980Z" itemprop="dateUpdated">2019-01-24 19:08:32</time>
+</span><br>
+
+
+        
+        <br>原始链接：<a href="/2019/01/24/djangoToken/" target="_blank" rel="external">http://yanjin.io/2019/01/24/djangoToken/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yanjin.io">
+            <img src="/img/avatar.png" alt="Yan Jin">
+            Yan Jin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/24/djangoToken/&title=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/24/djangoToken/&title=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&source=本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/01/24/djangoToken/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&url=http://yanjin.io/2019/01/24/djangoToken/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/01/24/djangoToken/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/21/performingRawSQLqueries/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Django 执行原始 SQL 语句参数化查询-预防 SQL 注入</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VhFrgXmsecYpTf8oE106WPQs-gzGzoHsz",
+            appKey: "H1VtQ28JkYV2JOq6TP8HdImT",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        
+<footer class="footer">
+    <div class="top">
+        <%- partial('plugins/site-visit') %>
+        <p>
+            <% if ((config.feed) && (config.feed.path.length)) { %>
+                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <% } %>
+            <span><%- __('footer.license') %></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+            <span>
+                <% if(theme.ICP_license) {%>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
+                <% } %>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/01/24/djangoToken/&title=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/01/24/djangoToken/&title=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&source=本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/01/24/djangoToken/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Django REST framework 利用 Token 实现登陆API》 — YanJin's Blog&url=http://yanjin.io/2019/01/24/djangoToken/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/01/24/djangoToken/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABvklEQVR42u3aQY7DIAwF0N7/0pkDVE2+7UDT0WNVUSQeWVg2+PWKx/E23v99X5nP3DxwcXHH3ON0nK/5xD0/zPkhzz8NLi7uTu6niJGEqpyVrL+w4eLiPpKbpCnVf3Fxcf8TNymQ8hlcXNyncavlTfUAX6jVcHFxB9z8lnLd7yX3u7i4uC3uURzzQmgycHFx93DzgFJ9PqkGx3xfXFzc1dxe6EkKngm0HMJwcXEXcJNriN515+T5pJCR4eLi3sqdNE/kG+QBMS+3cHFx93MLaUdxZf40e3HhgouLu4w73z5PgPLg+HElLi7uFm6+6HwmvzDN06BC3MXFxV3AzZf2AlDe1BUVP7i4uIu51UaK8+3zRo38webikRUXF3cBt7f9XTPNFg1cXNyN3N7z571tHNE8Li7udm6v4KmGrd7lCC4u7re48waLJDCV05pefYaLi9viHsXRS4DmLR24uLg7ufmoBrskPFU/AS4u7k5uNXhVE5pqqXNxGFxc3I3cXjtF/sZxWyqDi4v7g9ze8QqFEC4u7iO5dyUxebwapTi4uLgDbnXj6tNL/glwcXGfwO1VHPNLkOQYo/tdXFzcDvcPdb5SwX48xYQAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
