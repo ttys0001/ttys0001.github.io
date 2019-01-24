@@ -20,16 +20,16 @@
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="Hexo">
+    <meta name="keywords" content="Django">
     <meta name="description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
-<meta name="keywords" content="Hexo">
+<meta name="keywords" content="Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django REST framework 利用 Token 实现登陆API">
 <meta property="og:url" content="http://yanjin.io/2019/01/24/djangoToken/index.html">
 <meta property="og:site_name" content="YanJin&#39;s Blog">
 <meta property="og:description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-24T11:08:32.980Z">
+<meta property="og:updated_time" content="2019-01-24T11:11:56.192Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django REST framework 利用 Token 实现登陆API">
 <meta name="twitter:description" content="本文优化了 Django REST framework 的 Token 模块，实现登陆即更新一次 Token，修复了 Django Token 千年不变的问题，并且实现了先从缓存中获取 Token，如果没有再从数据库中取出来的缓存机制。">
@@ -204,7 +204,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-01-24T11:08:32.980Z" itemprop="dateUpdated">2019-01-24 19:08:32</time>
+    Last updated: <time datetime="2019-01-24T11:11:56.192Z" itemprop="dateUpdated">2019-01-24 19:11:56</time>
 </span><br>
 
 
@@ -226,7 +226,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Django/">Django</a></li></ul>
 
 
             
@@ -347,21 +347,28 @@
         
 <footer class="footer">
     <div class="top">
-        <%- partial('plugins/site-visit') %>
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
         <p>
-            <% if ((config.feed) && (config.feed.path.length)) { %>
-                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <% } %>
-            <span><%- __('footer.license') %></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
             <span>
-                <% if(theme.ICP_license) {%>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
-                <% } %>
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
             </span>
         </p>
     </div>
