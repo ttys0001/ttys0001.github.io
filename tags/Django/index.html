@@ -146,7 +146,7 @@
             ">All</a>
         
 
-            <a href="/tags/面试/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">面试</a>
+            <a href="/tags/Hexo/" style="-webkit-order:0;order:0" class="tags-list-item waves-effect waves-button waves-light">Hexo</a>
 
         
 
@@ -154,11 +154,11 @@
 
         
 
-            <a href="/tags/Hexo/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">Hexo</a>
+            <a href="/tags/区块链/" style="-webkit-order:2;order:2" class="tags-list-item waves-effect waves-button waves-light">区块链</a>
 
         
 
-            <a href="/tags/区块链/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">区块链</a>
+            <a href="/tags/面试/" style="-webkit-order:3;order:3" class="tags-list-item waves-effect waves-button waves-light">面试</a>
 
         
 
@@ -257,21 +257,28 @@
         
 <footer class="footer">
     <div class="top">
-        <%- partial('plugins/site-visit') %>
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
         <p>
-            <% if ((config.feed) && (config.feed.path.length)) { %>
-                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <% } %>
-            <span><%- __('footer.license') %></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
             <span>
-                <% if(theme.ICP_license) {%>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
-                <% } %>
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
             </span>
         </p>
     </div>
