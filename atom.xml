@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yanjin.io/"/>
-  <updated>2019-03-02T16:09:23.393Z</updated>
+  <updated>2019-03-02T16:14:43.322Z</updated>
   <id>http://yanjin.io/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yanjin.io/2019/03/03/networkcard/"/>
     <id>http://yanjin.io/2019/03/03/networkcard/</id>
     <published>2019-03-02T16:02:17.000Z</published>
-    <updated>2019-03-02T16:09:23.393Z</updated>
+    <updated>2019-03-02T16:14:43.322Z</updated>
     
-    <content type="html"><![CDATA[<p>这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。<br><a id="more"></a></p><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><p>1.无线网卡（免驱动版本：即插入后自带驱动自行安装）</p><p>2.流量较多的手机卡可以 Wi-Fi 热点</p><h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul><li>Win10</li><li><p>TP-LINK TL-WN726N 免驱版 USB 无线网卡</p><h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul><li>网关</li></ul><p>在计算机网络中，网关（英语：Gateway）是转发其他服务器通信数据的服务器，接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉，自己的通信目标是一个网关。</p><p>简单的理解来看，网关就是一个网络连接到另一个网络的“关口”。</p><p>默认网关是指不管流量去往哪里，如果没有指定去向，那么流量就会被引入默认网关指向的 IP。而我们现在有两块网卡都设置了默认网关(可能是你自己设置的，也可能是 DHCP 分配的)，并且他们的指向是不同的，这就导致流量不知道到底去往哪个默认网关，结果就是所有网站都无法正常访问。</p></li></ul><ul><li><p>子网掩码</p><p>子网掩码 <em>(subnet mask)</em> 又叫网络掩码、地址掩码、子网络遮罩，是一个应用于 <em>TCP/IP</em> 网络的 <em>32</em> 位二进制值。它可以屏蔽掉 <em>IP</em> 地址中的一部分，从而分离出 <em>IP</em> 地址中的网络部分与主机部分，基于子网掩码，管理员可以将网络进一步划分为若干子网。它必须结合 <em>IP</em> 地址一起使用。</p></li></ul><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1-安装网卡驱动"><a href="#1-安装网卡驱动" class="headerlink" title="1.安装网卡驱动"></a>1.安装网卡驱动</h3><p>插入网卡后，点击对应的 U 盘，里面自带驱动程序。</p><h3 id="2-查看内网配置"><a href="#2-查看内网配置" class="headerlink" title="2.查看内网配置"></a>2.查看内网配置</h3><p>目的是为了获取公司内网的网关，和自己的内网 IP 地址。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure><h3 id="3-添加内网路由策略"><a href="#3-添加内网路由策略" class="headerlink" title="3.添加内网路由策略"></a>3.添加内网路由策略</h3><p>例如通过第二步可以看到自己的内网 IP 地址是 10 开头的，那么我们就把这一整个 10 开头的网段设置为内网的网关。</p><p>打开 CMD，输入以下这段静态路由命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -p add 10.0.0.0 mask 255.0.0.0 10.0.0.254</span><br></pre></td></tr></table></figure><p>-p 是指永久添加到路由表；第一个 IP 段是你的内网网段；第二个是子网掩码，3 类私有地址段情况不同；第三个 IP 地址是你内网的默认网关。</p><p>另外两类内网地址的静态路由命令可供参考<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route -p add 192.168.0.0 mask 255.255.255.0 192.168.0.1</span><br><span class="line">route -p add 172.16.0.0 mask 255.255.0.0 172.16.0.254</span><br></pre></td></tr></table></figure></p><h3 id="4-设置外网流量优先"><a href="#4-设置外网流量优先" class="headerlink" title="4.设置外网流量优先"></a>4.设置外网流量优先</h3><p>请通过 Win10 桌面右下角的网络设置，进入设置页面。选择显示所有可用的网络，打开外网网卡的 IPV4 设置，选择”高级”，去掉”自动跃点”，手工填写跃点数为”1”，保存退出。</p><p>这里的跃点数是越小，优先级越高。</p><h3 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h3><p>首先可以通过进入一些可以查询自己 IP 地址的网站看看自己是不是手机流量的 IP，再随便测试一下内网的页面访问能否正常即可。</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.slyar.com/blog/route-interior-exterior-network.html" target="_blank" rel="noopener">ROUTE命令配置路由策略使双网卡可以同时访问内网和外网</a><br><a href="https://blog.csdn.net/jason314/article/details/5447743" target="_blank" rel="noopener">子网掩码详解</a></p>]]></content>
+    <content type="html"><![CDATA[<p>这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。<br><a id="more"></a></p><h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><p>1.无线网卡（免驱动版本：即插入后自带驱动自行安装）</p><p>2.流量较多的手机卡可以 Wi-Fi 热点</p><h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul><li>Win10</li><li>TP-LINK TL-WN726N 免驱版 USB 无线网卡<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul><li>网关</li></ul></li></ul><p>在计算机网络中，网关（英语：Gateway）是转发其他服务器通信数据的服务器，接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉，自己的通信目标是一个网关。</p><p>简单的理解来看，网关就是一个网络连接到另一个网络的“关口”。</p><p>默认网关是指不管流量去往哪里，如果没有指定去向，那么流量就会被引入默认网关指向的 IP。而我们现在有两块网卡都设置了默认网关(可能是你自己设置的，也可能是 DHCP 分配的)，并且他们的指向是不同的，这就导致流量不知道到底去往哪个默认网关，结果就是所有网站都无法正常访问。</p><ul><li>子网掩码</li></ul><p>子网掩码 <em>(subnet mask)</em> 又叫网络掩码、地址掩码、子网络遮罩，是一个应用于 <em>TCP/IP</em> 网络的 <em>32</em> 位二进制值。它可以屏蔽掉 <em>IP</em> 地址中的一部分，从而分离出 <em>IP</em> 地址中的网络部分与主机部分，基于子网掩码，管理员可以将网络进一步划分为若干子网。它必须结合 <em>IP</em> 地址一起使用。</p><h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1-安装网卡驱动"><a href="#1-安装网卡驱动" class="headerlink" title="1.安装网卡驱动"></a>1.安装网卡驱动</h3><p>插入网卡后，点击对应的 U 盘，里面自带驱动程序。</p><h3 id="2-查看内网配置"><a href="#2-查看内网配置" class="headerlink" title="2.查看内网配置"></a>2.查看内网配置</h3><p>目的是为了获取公司内网的网关，和自己的内网 IP 地址。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure><h3 id="3-添加内网路由策略"><a href="#3-添加内网路由策略" class="headerlink" title="3.添加内网路由策略"></a>3.添加内网路由策略</h3><p>例如通过第二步可以看到自己的内网 IP 地址是 10 开头的，那么我们就把这一整个 10 开头的网段设置为内网的网关。</p><p>打开 CMD，输入以下这段静态路由命令。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -p add 10.0.0.0 mask 255.0.0.0 10.0.0.254</span><br></pre></td></tr></table></figure><p>-p 是指永久添加到路由表；第一个 IP 段是你的内网网段；第二个是子网掩码，3 类私有地址段情况不同；第三个 IP 地址是你内网的默认网关。</p><p>另外两类内网地址的静态路由命令可供参考<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route -p add 192.168.0.0 mask 255.255.255.0 192.168.0.1</span><br><span class="line">route -p add 172.16.0.0 mask 255.255.0.0 172.16.0.254</span><br></pre></td></tr></table></figure></p><h3 id="4-设置外网流量优先"><a href="#4-设置外网流量优先" class="headerlink" title="4.设置外网流量优先"></a>4.设置外网流量优先</h3><p>请通过 Win10 桌面右下角的网络设置，进入设置页面。选择显示所有可用的网络，打开外网网卡的 IPV4 设置，选择”高级”，去掉”自动跃点”，手工填写跃点数为”1”，保存退出。</p><p>这里的跃点数是越小，优先级越高。</p><h3 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h3><p>首先可以通过进入一些可以查询自己 IP 地址的网站看看自己是不是手机流量的 IP，再随便测试一下内网的页面访问能否正常即可。</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.slyar.com/blog/route-interior-exterior-network.html" target="_blank" rel="noopener">ROUTE命令配置路由策略使双网卡可以同时访问内网和外网</a><br><a href="https://blog.csdn.net/jason314/article/details/5447743" target="_blank" rel="noopener">子网掩码详解</a></p>]]></content>
     
     <summary type="html">
     
@@ -117,26 +117,6 @@
   </entry>
   
   <entry>
-    <title>威胁猎人初级安全实习生面经</title>
-    <link href="http://yanjin.io/2018/11/15/interviewThreadHunter/"/>
-    <id>http://yanjin.io/2018/11/15/interviewThreadHunter/</id>
-    <published>2018-11-15T01:42:58.897Z</published>
-    <updated>2019-01-20T11:55:29.081Z</updated>
-    
-    <content type="html"><![CDATA[<p>公司在深圳，办公环境很好，前台小姐姐很漂亮，有程序猿鼓励师猫猫一只，方向我也很喜欢，打击黑灰产。<br><a id="more"></a></p><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 9 日 下午 4 点</p><p>岗位：威胁猎人初级安全实习生</p><h2 id="技术官一面"><a href="#技术官一面" class="headerlink" title="技术官一面"></a>技术官一面</h2><p>技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。</p><p>然后问了我下面几个问题：</p><p>1.OSI 七层模型是哪七层？（没答出来全部，记得一两个）</p><p>2.有没有用过 Linux 系统</p><p>3.Cat 命令和 Grep 命令的使用方法，比如说考了我如何匹配搜索两个 TXT，一个 TXT 文本里面有很多 ip 地址，另外一个 TXT 文本里面包含了很多黑产的监控流量有 ip 地址，发送数据包之类的</p><p>4.是否了解黑产和灰产，让我说说自己知道的</p><p>我回答了猫池，还有物联网 IOT 的肉鸡 DDOS 攻击，打码平台，薅羊毛党啊等等</p><p>然后技术官就跟我介绍了他们这个部门主要做啥</p><h2 id="CTO二面"><a href="#CTO二面" class="headerlink" title="CTO二面"></a>CTO二面</h2><p>当时大佬一进来我就震惊了，我以为一面就可以了，我只是面一个实习生咋还跑出来大佬呢</p><p>1.什么时候开始学安全的（我回答今年年初）</p><p>2.设计一个登陆注册的系统有什么要考虑的地方</p><p>要有验证码功能，而且最好用现在比较难以破解的验证码，比如 Google 和网易的验证码。</p><p>密码也应该有强度要求，然后不能直接明文发生登陆或者注册请求到服务器，要加盐加密传输，数据库存储也应该是加盐加密保存，防止被脱裤之后明文裸奔</p><p>参数还要带有 csfr_token 值防止 CSRF 攻击</p><p>cookie 中要设置 HttpOnly 属性，那么通过 js 脚本将无法读取到 cookie 信息，这样能有效的防止 XSS 攻击</p><p>对于参数的输入要进行参数化参训防止SQL注入</p><p>3.https 能不能被破解</p><p>我说可以，就是在客户端或者服务器端劫持，替换了证明就可以看到 https 明文传输的内容。但是 CTO 指出来这是因为你用了抓包工具，而且还是在网站没有校验证书的情况下，如果校验的话中间人劫持也没用</p><p>4.我简历上学校正方的漏洞是怎么挖到的</p><p>5.自己还有投别的公司拿到 offer 吗？（我说还投了一家教育公司，他就有点怀疑我是不是真的喜欢安全了，这里建议不要回答不相关的）</p><p>6.问我如果数据库被脱裤了，有什么处理方案</p><p>一赶紧溯源攻击，找到入侵者，然后寻找是否这个数据库是否在网上公开，要即可减少被售卖或者公开的机会</p><p>二是告诉用户，提醒用户改密码</p><p>面试的时候，大佬眉头一直紧皱的看着我的简历，让我很害怕</p><h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>HR面就没问啥了，问我期望薪水。我说 4k-5k 然后似乎被嘲笑了哈哈，说实习生工资没有这么高的，进来主要是学东西。</p><p>还问我几时可以到岗，最后是拿到这个实习生 offer 啦！</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;公司在深圳，办公环境很好，前台小姐姐很漂亮，有程序猿鼓励师猫猫一只，方向我也很喜欢，打击黑灰产。&lt;br&gt;
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
     <title>360企业安全实习生面经</title>
     <link href="http://yanjin.io/2018/11/15/interview360/"/>
     <id>http://yanjin.io/2018/11/15/interview360/</id>
@@ -168,6 +148,26 @@
     <summary type="html">
     
       &lt;p&gt;一个啥也不会的菜鸡强行转测试的面试经验&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yanjin.io/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>威胁猎人初级安全实习生面经</title>
+    <link href="http://yanjin.io/2018/11/15/interviewThreadHunter/"/>
+    <id>http://yanjin.io/2018/11/15/interviewThreadHunter/</id>
+    <published>2018-11-15T01:42:58.897Z</published>
+    <updated>2019-01-20T11:55:29.081Z</updated>
+    
+    <content type="html"><![CDATA[<p>公司在深圳，办公环境很好，前台小姐姐很漂亮，有程序猿鼓励师猫猫一只，方向我也很喜欢，打击黑灰产。<br><a id="more"></a></p><h2 id="面试时间及岗位"><a href="#面试时间及岗位" class="headerlink" title="面试时间及岗位"></a>面试时间及岗位</h2><p>时间：2018 年 11 月 9 日 下午 4 点</p><p>岗位：威胁猎人初级安全实习生</p><h2 id="技术官一面"><a href="#技术官一面" class="headerlink" title="技术官一面"></a>技术官一面</h2><p>技术官主要是看了我的简历，开始说道他也是通信工程毕业的，知道我们电子信息科学与技术学什么，知道我们学的很杂哈哈。</p><p>然后问了我下面几个问题：</p><p>1.OSI 七层模型是哪七层？（没答出来全部，记得一两个）</p><p>2.有没有用过 Linux 系统</p><p>3.Cat 命令和 Grep 命令的使用方法，比如说考了我如何匹配搜索两个 TXT，一个 TXT 文本里面有很多 ip 地址，另外一个 TXT 文本里面包含了很多黑产的监控流量有 ip 地址，发送数据包之类的</p><p>4.是否了解黑产和灰产，让我说说自己知道的</p><p>我回答了猫池，还有物联网 IOT 的肉鸡 DDOS 攻击，打码平台，薅羊毛党啊等等</p><p>然后技术官就跟我介绍了他们这个部门主要做啥</p><h2 id="CTO二面"><a href="#CTO二面" class="headerlink" title="CTO二面"></a>CTO二面</h2><p>当时大佬一进来我就震惊了，我以为一面就可以了，我只是面一个实习生咋还跑出来大佬呢</p><p>1.什么时候开始学安全的（我回答今年年初）</p><p>2.设计一个登陆注册的系统有什么要考虑的地方</p><p>要有验证码功能，而且最好用现在比较难以破解的验证码，比如 Google 和网易的验证码。</p><p>密码也应该有强度要求，然后不能直接明文发生登陆或者注册请求到服务器，要加盐加密传输，数据库存储也应该是加盐加密保存，防止被脱裤之后明文裸奔</p><p>参数还要带有 csfr_token 值防止 CSRF 攻击</p><p>cookie 中要设置 HttpOnly 属性，那么通过 js 脚本将无法读取到 cookie 信息，这样能有效的防止 XSS 攻击</p><p>对于参数的输入要进行参数化参训防止SQL注入</p><p>3.https 能不能被破解</p><p>我说可以，就是在客户端或者服务器端劫持，替换了证明就可以看到 https 明文传输的内容。但是 CTO 指出来这是因为你用了抓包工具，而且还是在网站没有校验证书的情况下，如果校验的话中间人劫持也没用</p><p>4.我简历上学校正方的漏洞是怎么挖到的</p><p>5.自己还有投别的公司拿到 offer 吗？（我说还投了一家教育公司，他就有点怀疑我是不是真的喜欢安全了，这里建议不要回答不相关的）</p><p>6.问我如果数据库被脱裤了，有什么处理方案</p><p>一赶紧溯源攻击，找到入侵者，然后寻找是否这个数据库是否在网上公开，要即可减少被售卖或者公开的机会</p><p>二是告诉用户，提醒用户改密码</p><p>面试的时候，大佬眉头一直紧皱的看着我的简历，让我很害怕</p><h2 id="HR面"><a href="#HR面" class="headerlink" title="HR面"></a>HR面</h2><p>HR面就没问啥了，问我期望薪水。我说 4k-5k 然后似乎被嘲笑了哈哈，说实习生工资没有这么高的，进来主要是学东西。</p><p>还问我几时可以到岗，最后是拿到这个实习生 offer 啦！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;公司在深圳，办公环境很好，前台小姐姐很漂亮，有程序猿鼓励师猫猫一只，方向我也很喜欢，打击黑灰产。&lt;br&gt;
     
     </summary>
     
