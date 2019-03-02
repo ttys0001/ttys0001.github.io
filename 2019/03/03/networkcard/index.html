@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>双网卡配置同时访问内网外网 | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="网络">
+    <meta name="description" content="这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双网卡配置同时访问内网外网">
+<meta property="og:url" content="http://yanjin.io/2019/03/03/networkcard/index.html">
+<meta property="og:site_name" content="YanJin&#39;s Blog">
+<meta property="og:description" content="这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-02T16:09:23.393Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="双网卡配置同时访问内网外网">
+<meta name="twitter:description" content="这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。">
+    
+        <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Jin</h5>
+          <a href="mailto:yimjin@163.com" title="yimjin@163.com" class="mail">yimjin@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ttys0001" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">双网卡配置同时访问内网外网</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">双网卡配置同时访问内网外网</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-02T16:02:17.000Z" itemprop="datePublished" class="page-time">
+  2019-03-03
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#条件"><span class="post-toc-number">1.</span> <span class="post-toc-text">条件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#测试环境"><span class="post-toc-number">2.</span> <span class="post-toc-text">测试环境</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前置知识"><span class="post-toc-number">3.</span> <span class="post-toc-text">前置知识</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#步骤"><span class="post-toc-number">4.</span> <span class="post-toc-text">步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-安装网卡驱动"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1.安装网卡驱动</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-查看内网配置"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2.查看内网配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-添加内网路由策略"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3.添加内网路由策略</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-设置外网流量优先"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4.设置外网流量优先</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-测试"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">5.测试</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考链接"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考链接</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-networkcard"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">双网卡配置同时访问内网外网</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-03 00:02:17" datetime="2019-03-02T16:02:17.000Z"  itemprop="datePublished">2019-03-03</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。<br><a id="more"></a></p>
+<h2 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h2><p>1.无线网卡（免驱动版本：即插入后自带驱动自行安装）</p>
+<p>2.流量较多的手机卡可以 Wi-Fi 热点</p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><ul>
+<li>Win10</li>
+<li><p>TP-LINK TL-WN726N 免驱版 USB 无线网卡</p>
+<h2 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h2><ul>
+<li>网关</li>
+</ul>
+<p>在计算机网络中，网关（英语：Gateway）是转发其他服务器通信数据的服务器，接收从客户端发送来的请求时，它就像自己拥有资源的源服务器一样对请求进行处理。有时客户端可能都不会察觉，自己的通信目标是一个网关。</p>
+<p>简单的理解来看，网关就是一个网络连接到另一个网络的“关口”。</p>
+<p>默认网关是指不管流量去往哪里，如果没有指定去向，那么流量就会被引入默认网关指向的 IP。而我们现在有两块网卡都设置了默认网关(可能是你自己设置的，也可能是 DHCP 分配的)，并且他们的指向是不同的，这就导致流量不知道到底去往哪个默认网关，结果就是所有网站都无法正常访问。</p>
+</li>
+</ul>
+<ul>
+<li><p>子网掩码</p>
+<p>子网掩码 <em>(subnet mask)</em> 又叫网络掩码、地址掩码、子网络遮罩，是一个应用于 <em>TCP/IP</em> 网络的 <em>32</em> 位二进制值。它可以屏蔽掉 <em>IP</em> 地址中的一部分，从而分离出 <em>IP</em> 地址中的网络部分与主机部分，基于子网掩码，管理员可以将网络进一步划分为若干子网。它必须结合 <em>IP</em> 地址一起使用。</p>
+</li>
+</ul>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="1-安装网卡驱动"><a href="#1-安装网卡驱动" class="headerlink" title="1.安装网卡驱动"></a>1.安装网卡驱动</h3><p>插入网卡后，点击对应的 U 盘，里面自带驱动程序。</p>
+<h3 id="2-查看内网配置"><a href="#2-查看内网配置" class="headerlink" title="2.查看内网配置"></a>2.查看内网配置</h3><p>目的是为了获取公司内网的网关，和自己的内网 IP 地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipconfig /all</span><br></pre></td></tr></table></figure>
+<h3 id="3-添加内网路由策略"><a href="#3-添加内网路由策略" class="headerlink" title="3.添加内网路由策略"></a>3.添加内网路由策略</h3><p>例如通过第二步可以看到自己的内网 IP 地址是 10 开头的，那么我们就把这一整个 10 开头的网段设置为内网的网关。</p>
+<p>打开 CMD，输入以下这段静态路由命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route -p add 10.0.0.0 mask 255.0.0.0 10.0.0.254</span><br></pre></td></tr></table></figure>
+<p>-p 是指永久添加到路由表；第一个 IP 段是你的内网网段；第二个是子网掩码，3 类私有地址段情况不同；第三个 IP 地址是你内网的默认网关。</p>
+<p>另外两类内网地址的静态路由命令可供参考<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route -p add 192.168.0.0 mask 255.255.255.0 192.168.0.1</span><br><span class="line">route -p add 172.16.0.0 mask 255.255.0.0 172.16.0.254</span><br></pre></td></tr></table></figure></p>
+<h3 id="4-设置外网流量优先"><a href="#4-设置外网流量优先" class="headerlink" title="4.设置外网流量优先"></a>4.设置外网流量优先</h3><p>请通过 Win10 桌面右下角的网络设置，进入设置页面。选择显示所有可用的网络，打开外网网卡的 IPV4 设置，选择”高级”，去掉”自动跃点”，手工填写跃点数为”1”，保存退出。</p>
+<p>这里的跃点数是越小，优先级越高。</p>
+<h3 id="5-测试"><a href="#5-测试" class="headerlink" title="5.测试"></a>5.测试</h3><p>首先可以通过进入一些可以查询自己 IP 地址的网站看看自己是不是手机流量的 IP，再随便测试一下内网的页面访问能否正常即可。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="http://www.slyar.com/blog/route-interior-exterior-network.html" target="_blank" rel="noopener">ROUTE命令配置路由策略使双网卡可以同时访问内网和外网</a><br><a href="https://blog.csdn.net/jason314/article/details/5447743" target="_blank" rel="noopener">子网掩码详解</a></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-02T16:09:23.393Z" itemprop="dateUpdated">2019-03-03 00:09:23</time>
+</span><br>
+
+
+        
+        <br>原始链接：<a href="/2019/03/03/networkcard/" target="_blank" rel="external">http://yanjin.io/2019/03/03/networkcard/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yanjin.io">
+            <img src="/img/avatar.png" alt="Yan Jin">
+            Yan Jin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/03/03/networkcard/&title=《双网卡配置同时访问内网外网》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/03/03/networkcard/&title=《双网卡配置同时访问内网外网》 — YanJin's Blog&source=这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/03/03/networkcard/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双网卡配置同时访问内网外网》 — YanJin's Blog&url=http://yanjin.io/2019/03/03/networkcard/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/03/03/networkcard/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/02/07/yourgoogle/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">搭建属于自己的Google-反向代理Google</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VhFrgXmsecYpTf8oE106WPQs-gzGzoHsz",
+            appKey: "H1VtQ28JkYV2JOq6TP8HdImT",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        
+<footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
+            <span>
+                
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/03/03/networkcard/&title=《双网卡配置同时访问内网外网》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/03/03/networkcard/&title=《双网卡配置同时访问内网外网》 — YanJin's Blog&source=这个方案适用于内网，自己可以买一个无线网卡，连接自己的 Wi-Fi 热点实现外网的访问。" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/03/03/networkcard/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《双网卡配置同时访问内网外网》 — YanJin's Blog&url=http://yanjin.io/2019/03/03/networkcard/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/03/03/networkcard/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwUlEQVR42u3aQW7DMAwEwPz/0+61QGB3Kcq0C4xOQWBHoxwWEqnPJx7Hr/H9/ffn77eu3908cHFx29zjciTPXL91tuD893FxcZ/iniXGdZB1guk6BE+/x8XFfTE3CZ21yMPFxf2/3OsDT3IEwsXFfT93LWjyLc5aLOLi4j7F7RxUdn2+pb6Li4u7xD02jaRx0p8RFxd3hps0OZIw6hRSyxsdXFzcm7mdokby/Fpp9fSPwMXFfYiblEerFyn6x57TIMPFxb2BW22odA45u4qtuLi4k9wcmi+yGoUbyqm4uLhtbt7wWCuUVC92/LEMXFzcEe6uwFoLsrXyKy4u7t3caoEjL3PkwVe48IGLizvIXQugTjljscCKi4s7yE2m7DRL8ggr3xPBxcW9gbs2TbK5yYspyeJxcXEnuXc0PKot2EJxBBcXd4SbbGLWrmKU0zQIO1xc3BnuURxrMbRtSbi4uCPc6iWtZDF5OFYXjIuLO8nNw6s6cX5Fo/ALuLi4g9zqmamz0VmLTlxc3Hdyk+JI3i5N5m0FGS4u7gg3aZBUufnxCRcXd567t0hajafCVQxcXNwRbn4U6R+WOovBxcUd4f4AtPDdRFovC6UAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
