@@ -151,6 +151,51 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-internthoughts"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2019-03-21 20:02:17" datetime="2019-03-21T12:02:17.000Z"  itemprop="datePublished">2019-03-21</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2019/03/21/internthoughts/">实习找 bug 杂谈</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        纪念一下三个 bug 解决思路
+    
+
+        <a href="/2019/03/21/internthoughts/" class="post-more waves-effect waves-button">
+            Continue reading...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-networkcard"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -376,7 +421,7 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-interview360"
+            <article id="post-interviewCtrip"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -392,7 +437,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/11/15/interview360/">360企业安全实习生面经</a>
+      <a class="post-title-link" href="/2018/11/15/interviewCtrip/">携程测试实习生面经</a>
     </h3>
   
 
@@ -402,10 +447,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        360企业安全-福建分公司安全实习生面试经验
+        一个啥也不会的菜鸡强行转测试的面试经验
     
 
-        <a href="/2018/11/15/interview360/" class="post-more waves-effect waves-button">
+        <a href="/2018/11/15/interviewCtrip/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
@@ -466,7 +511,7 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-interviewCtrip"
+            <article id="post-interview360"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -482,7 +527,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/11/15/interviewCtrip/">携程测试实习生面经</a>
+      <a class="post-title-link" href="/2018/11/15/interview360/">360企业安全实习生面经</a>
     </h3>
   
 
@@ -492,10 +537,10 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        一个啥也不会的菜鸡强行转测试的面试经验
+        360企业安全-福建分公司安全实习生面试经验
     
 
-        <a href="/2018/11/15/interviewCtrip/" class="post-more waves-effect waves-button">
+        <a href="/2018/11/15/interview360/" class="post-more waves-effect waves-button">
             Continue reading...
         </a>
     </div>
@@ -555,51 +600,6 @@
 
         </li>
     
-        <li class="post-list-item fade">
-            <article id="post-wechatArticleSpider"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-04-26 11:41:18" datetime="2018-04-26T03:41:18.000Z"  itemprop="datePublished">2018-04-26</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/26/wechatArticleSpider/">微信公众号推文永久链接爬虫</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        利用微信公众号后台素材管理－新建图文素材－超链接－查找文章（公众号）的接口实现爬取公众号的所有文章链接
-    
-
-        <a href="/2018/04/26/wechatArticleSpider/" class="post-more waves-effect waves-button">
-            Continue reading...
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python爬虫/">Python爬虫</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
     </ul>
 
     
@@ -615,21 +615,28 @@
         
 <footer class="footer">
     <div class="top">
-        <%- partial('plugins/site-visit') %>
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span><span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span><span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
         <p>
-            <% if ((config.feed) && (config.feed.path.length)) { %>
-                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <% } %>
-            <span><%- __('footer.license') %></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
             <span>
-                <% if(theme.ICP_license) {%>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
-                <% } %>
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
             </span>
         </p>
     </div>
