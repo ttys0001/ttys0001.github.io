@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    
+    <title>宝塔 + Github Page + Hexo 博客自定义域名上 https | YanJin&#39;s Blog | 每一个不曾起舞的日子都是对生命的辜负</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Hexo">
+    <meta name="description" content="Github Page 博客自定义域名上 HTTPS 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https 始终无法使用的情况。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宝塔 + Github Page + Hexo 博客自定义域名上 https">
+<meta property="og:url" content="http://yanjin.io/2019/03/25/https/index.html">
+<meta property="og:site_name" content="YanJin&#39;s Blog">
+<meta property="og:description" content="Github Page 博客自定义域名上 HTTPS 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https 始终无法使用的情况。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-03-25T15:13:28.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="宝塔 + Github Page + Hexo 博客自定义域名上 https">
+<meta name="twitter:description" content="Github Page 博客自定义域名上 HTTPS 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https 始终无法使用的情况。">
+    
+        <link rel="alternate" type="application/atom+xml" title="YanJin&#39;s Blog" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.png">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Yan Jin</h5>
+          <a href="mailto:yimjin@163.com" title="yimjin@163.com" class="mail">yimjin@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/ttys0001" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/about"  >
+                <i class="icon icon-lg icon-link"></i>
+                About
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">宝塔 + Github Page + Hexo 博客自定义域名上 https</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="Search">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">宝塔 + Github Page + Hexo 博客自定义域名上 https</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-25T12:02:17.000Z" itemprop="datePublished" class="page-time">
+  2019-03-25
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#问题"><span class="post-toc-number">1.</span> <span class="post-toc-text">问题</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决方法"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决方法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Github-Repository-Settings-添加-Custom-domain"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Github Repository Settings 添加 Custom domain</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#添加域名解析记录"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">添加域名解析记录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务器安装宝塔"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">服务器安装宝塔</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装宝塔一句话代码"><span class="post-toc-number">2.3.1.</span> <span class="post-toc-text">安装宝塔一句话代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#宝塔安装-LNMP-环境"><span class="post-toc-number">2.3.2.</span> <span class="post-toc-text">宝塔安装 LNMP 环境</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#宝塔添加站点"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">宝塔添加站点</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#站点设置反向代理"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">站点设置反向代理</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-https"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">宝塔 + Github Page + Hexo 博客自定义域名上 https</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-25 20:02:17" datetime="2019-03-25T12:02:17.000Z"  itemprop="datePublished">2019-03-25</time>
+
+            
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Github Page 博客自定义域名上 <em>HTTPS</em> 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https 始终无法使用的情况。<br><a id="more"></a></p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>自己 Github  博客仓库的的 Setting 的 enforce https 始终不能打勾，导致自己的自定义域名始终是 HTTP，作为一个 Geeker 怎么能容忍 HTTP 呢。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><h3 id="Github-Repository-Settings-添加-Custom-domain"><a href="#Github-Repository-Settings-添加-Custom-domain" class="headerlink" title="Github Repository Settings 添加 Custom domain"></a>Github Repository Settings 添加 Custom domain</h3><p>将 Custom domain 设置为自己的域名即可，例如设置为 yanjin.io</p>
+<h3 id="添加域名解析记录"><a href="#添加域名解析记录" class="headerlink" title="添加域名解析记录"></a>添加域名解析记录</h3><p>在自己域名的服务商添加一条 A Record，host 设置为 @，表示指向一级域名，即 yanjin.io。Value 设置为自己服务器的 IP 地址。</p>
+<h3 id="服务器安装宝塔"><a href="#服务器安装宝塔" class="headerlink" title="服务器安装宝塔"></a>服务器安装宝塔</h3><h4 id="安装宝塔一句话代码"><a href="#安装宝塔一句话代码" class="headerlink" title="安装宝塔一句话代码"></a>安装宝塔一句话代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y wget &amp;&amp; wget -O install.sh http://download.bt.cn/install/install.sh &amp;&amp; sh install.sh</span><br></pre></td></tr></table></figure>
+<h4 id="宝塔安装-LNMP-环境"><a href="#宝塔安装-LNMP-环境" class="headerlink" title="宝塔安装 LNMP 环境"></a>宝塔安装 LNMP 环境</h4><p>成功安装宝塔之后，会显示一个 URL，账号和密码，这个是进入宝塔界面的方法。<br>进入首页之后，他会自动跳出来安装环境，我们选择安装 LNMP 环境，选择安装 Nginx 其实就够了，其他可以不用，勾选编译安装。</p>
+<h3 id="宝塔添加站点"><a href="#宝塔添加站点" class="headerlink" title="宝塔添加站点"></a>宝塔添加站点</h3><p>左边菜单栏-网站-添加站点，域名设置为自己之前自定义的域名，其他都可以选择不创建，PHP 版本设置为静态，点击提交。</p>
+<p>点击设置，在网站页面最右边就可以看到设置按钮。</p>
+<p>SSL-Let’s Encrypt-添加邮箱，文件验证即可，宝塔会自动帮你申请 SSL 证书。</p>
+<p>生成完了就可以测试一下 HTTPS 域名了。如果测试成功，再勾选强制 HTTPS。</p>
+<h3 id="站点设置反向代理"><a href="#站点设置反向代理" class="headerlink" title="站点设置反向代理"></a>站点设置反向代理</h3><p>目标 URL 设置为如下所示，即自己Github Page的原始博客域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ttsy0001.github.io</span><br></pre></td></tr></table></figure>
+<p>发送域名设为如下所示，即自己的自定义域名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yanjin.io</span><br></pre></td></tr></table></figure>
+<p>最后测试一下域名看看有没有跳转到博客即可！</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    Last updated: <time datetime="2019-03-25T15:13:28.651Z" itemprop="dateUpdated">2019-03-25 23:13:28</time>
+</span><br>
+
+
+        
+        <br>原始链接：<a href="/2019/03/25/https/" target="_blank" rel="external">http://yanjin.io/2019/03/25/https/</a>
+        
+    </div>
+    
+    <footer>
+        <a href="http://yanjin.io">
+            <img src="/img/avatar.png" alt="Yan Jin">
+            Yan Jin
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/03/25/https/&title=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/03/25/https/&title=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&source=Github Page 博客自定义域名上 HTTPS 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/03/25/https/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&url=http://yanjin.io/2019/03/25/https/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/03/25/https/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/03/23/offer/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">大四实习生拿到 Offer 备忘录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Valine Comments -->
+    <div class="comments vcomment" id="comments"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src="//unpkg.com/valine@latest/dist/Valine.min.js"></script>
+    <!-- Valine Comments script -->
+    <script>
+        var GUEST_INFO = ['nick','mail','link'];
+        var guest_info = 'nick,mail'.split(',').filter(function(item){
+          return GUEST_INFO.indexOf(item) > -1
+        });
+        new Valine({
+            el: '#comments',
+            notify: 'true' == 'true',
+            verify: 'false' == 'true',
+            appId: "VhFrgXmsecYpTf8oE106WPQs-gzGzoHsz",
+            appKey: "H1VtQ28JkYV2JOq6TP8HdImT",
+            avatar: "mm",
+            placeholder: "Just go go",
+            guest_info: guest_info.length == 0 ? GUEST_INFO : guest_info,
+            pageSize: "10"
+        })
+    </script>
+    <!-- Valine Comments end -->
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        
+<footer class="footer">
+    <div class="top">
+        <%- partial('plugins/site-visit') %>
+        <p>
+            <% if ((config.feed) && (config.feed.path.length)) { %>
+                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <% } %>
+            <span><%- __('footer.license') %></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+            <span>
+                <% if(theme.ICP_license) {%>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
+                <% } %>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yanjin.io/2019/03/25/https/&title=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&pic=http://yanjin.io/img/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yanjin.io/2019/03/25/https/&title=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&source=Github Page 博客自定义域名上 HTTPS 备用方案，适用于特殊情况下利用 Github  的 Settings 的 enforce https..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yanjin.io/2019/03/25/https/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《宝塔 + Github Page + Hexo 博客自定义域名上 https》 — YanJin's Blog&url=http://yanjin.io/2019/03/25/https/&via=http://yanjin.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yanjin.io/2019/03/25/https/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzklEQVR42u3aS4rDMBAFQN//0hmY3RCsvFbLihhKqxCCXM6i6d91xef1e94/v/8mOeN7FhxcXNw2N7/67mFV1vj+u3twcXH3c5PgNX5Afls1OOLi4p7MzdOgPGzh4uL+P+5dIlINebi4uGdy8wJmjOuHtmW1Gi4uboPbaZiu+rypv4uLi9ueSiTN06SF2nnin3twcXG3cDutzyQFSYYoSdSKHo+Li/sYt/p9PmpdlpHh4uJu5M4FrySQVZc2CusXuLi4D3A7ZUySxOQrWctyMVxc3Da3WtJUx7F5WMwHObi4uHu4nWCUvF4nPbrWxk5cXNzijtNcQ6Q6dGm1TnBxcbdwqytT40vzkmZB8YOLi/sYt/pmY3SUTwVt09twhouLu4WbpBTV1mcnhEVxFxcX92FuYRJbXZ+aGrt+CIi4uLjbuasKlYQ+OdbFxcXdwu2MUSfzqfgUljBwcXGXcl/Fkzc++g0RXFzcb3E7j8lXMarrXP0/BRcXt8/tLFJUBy15wIp2RnBxcR/mdoJXZxw7Lntu8zJcXNxjuHNlUj6aLXR5cXFxD+N2liqSsPUh8OHi4m7kzhU/ySvlL4yLi3sOt9ownSt1OjeU6bi4uPPcH6Z1UsFQW5MwAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
