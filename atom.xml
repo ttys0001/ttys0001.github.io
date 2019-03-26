@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yanjin.io/"/>
-  <updated>2019-03-25T15:13:28.651Z</updated>
+  <updated>2019-03-26T13:20:09.724Z</updated>
   <id>http://yanjin.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ten minutes a day - 每天十分钟</title>
+    <link href="http://yanjin.io/2019/03/26/tenminutes/"/>
+    <id>http://yanjin.io/2019/03/26/tenminutes/</id>
+    <published>2019-03-26T12:02:17.000Z</published>
+    <updated>2019-03-26T13:20:09.724Z</updated>
+    
+    <content type="html"><![CDATA[<p>每天十分钟就可以写完一本书，第一次翻译英文文章，锻炼英文。<br><a id="more"></a></p><p>2012 年初，我出版了 <a href="https://www.amazon.com/dp/B00F9311YC/ref=dp-kindle-redirect?_encoding=UTF8&amp;btkr=1" target="_blank" rel="noopener">Jumping into C++</a>。看了一下日历，我从 2010 年的一月份写到了 2012 年的一月份，但它只用了我不到 200 小时的工作量。我这么清楚这个时间是因为我始终仔细的追踪了我的工作时间。在 2010 年 1 月 4 日和 2011 年 9月 29 日这段时间（此时我停止了追踪），我写了接近 156 个小时和 70000 字。</p><p>那我是如何做到短时间内成功写完这本书呢？我有一个简单的原则，我必须每天写十分钟这本书的内容，每天，没有任何的借口。</p><p>最开始追踪时间的理由只有一个，就是希望通过连续的几天来鼓励自己，而且我认为不仅仅只是计算打卡天数那么简单。我会写下来具体我花费了多久的时间。它真的起作用了，我从来没有一天偷懒。</p><p>现在，我不会说我每天都有写这本书——只是说我在做这件事情。有时候，我会研究示例代码，调整一下格式，头脑风暴一波或者进行编辑。我需要做的事情就是，盯着页面十分钟，试着做一些事情感觉到自己在进步。</p><p>即使我是在写书的状态，我也没有在任何特定的一天写了特别久的时间——在 499 天中，我每天都写大概 15 分钟或甚至更少。只有其中 5 天我工作了超过一个小时，然后最长的写书时间是 72 分钟。它确实有助于我进入一种美好的状态，而从来不是那种立刻完成的状态（Jack Kerouac 说大概用了三周写完《On the Road》）。</p><p>因此，我进入了一种完全不同的状态——一个工作无所不在的世界，但是都在背后默默完成了。More sous vide than flame grilled。我在脑海中总是提醒自己要每天写作。当我完成了写作，我会带着自己的困惑到通勤路上或者淋浴间，我会和人们讨论这些困惑。我的想法总是很跳跃，很容易来回的改变。如果我每周六工作 70 分钟，我相信自己的进步会小得多。每次我准备开始的时候，我都会忘记自己在哪里。</p><p>在某些日子里，尽管如此，我还是会陷入困境。在那些日子，我允许自己做一些小调整，而不会强迫自己写大量的新内容。如果我有了作家之锁，我不会去强行打破这个锁——也许今天只是好的不够，所以不如做一点别的事情吧。明天总会有一些小缝隙时间来继续写作的。</p><p>在那些天，我总是检查和编辑几十页，这样似乎在激活我的灵感，通过提醒我书的大局和一些差距，以某种我做不到的方式（当我的光标停留在一句话的中间）。我很少发现自己不能连续写几天或一周。</p><p>另外一件对我很有帮助的事情是，只有我完成了写作，我才允许自己可以检查邮箱。在我读了一篇文章 <a href="http://dimitarsimeonov.com/2016/05/13/the-blinking-cursor-and-the-hot-towel" target="_blank" rel="noopener">http://dimitarsimeonov.com/2016/05/13/the-blinking-cursor-and-the-hot-towel</a> 后我才意识到自己创建了一个习惯回路。我给自己检查邮件作为完成写作的奖励。它将写书这个概念和某件事情绑定在了一起，让它变得非常具体。这样子就没可能忘记写书了。</p><p>总有些时候，我觉得这本书不可能写完的，这本书就好像一座高山难以爬到山顶。但当这件事情真实发生的时候，回首过去做的事情，和编辑这本书，告诉了我，我已经走了这么远并鼓励我继续下一波工作。</p><p>所以，下一个十分钟你会做什么呢？</p><blockquote><p>原文作者：Alex Allain</p><p>原文链接：</p><p><a href="https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924" target="_blank" rel="noopener">https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924</a></p><p>译者：Gin</p><p>编辑：Gin</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每天十分钟就可以写完一本书，第一次翻译英文文章，锻炼英文。&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="翻译" scheme="http://yanjin.io/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
   
   <entry>
     <title>宝塔 + Github Page + Hexo 博客自定义域名上 https</title>
