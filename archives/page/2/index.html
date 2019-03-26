@@ -167,7 +167,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/11/15/interviewCtrip/">携程测试实习生面经</a>
+      <a class="post-title-link" href="/2018/11/15/interview360/">360企业安全实习生面经</a>
     </h3>
   
 
@@ -199,7 +199,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/11/15/interview360/">360企业安全实习生面经</a>
+      <a class="post-title-link" href="/2018/11/15/interviewThreadHunter/">威胁猎人初级安全实习生面经</a>
     </h3>
   
 
@@ -334,21 +334,21 @@
         
 <footer class="footer">
     <div class="top">
-        <%- partial('plugins/site-visit') %>
+        
+
         <p>
-            <% if ((config.feed) && (config.feed.path.length)) { %>
-                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            <% } %>
-            <span><%- __('footer.license') %></span>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
         </p>
     </div>
     <div class="bottom">
-        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
+        <p><span>Yan Jin &copy; 2017 - 2019</span>
             <span>
-                <% if(theme.ICP_license) {%>
-                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
-                <% } %>
-                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+                
+                Nice to meet you<br>
+                
             </span>
         </p>
     </div>
