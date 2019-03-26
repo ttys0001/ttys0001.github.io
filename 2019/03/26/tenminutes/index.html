@@ -29,7 +29,7 @@
 <meta property="og:site_name" content="YanJin&#39;s Blog">
 <meta property="og:description" content="每天十分钟就可以写完一本书，第一次翻译英文文章，锻炼英文。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-03-26T13:20:09.724Z">
+<meta property="og:updated_time" content="2019-03-26T13:26:43.558Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ten minutes a day - 每天十分钟">
 <meta name="twitter:description" content="每天十分钟就可以写完一本书，第一次翻译英文文章，锻炼英文。">
@@ -185,8 +185,7 @@
 <p>所以，下一个十分钟你会做什么呢？</p>
 <blockquote>
 <p>原文作者：Alex Allain</p>
-<p>原文链接：</p>
-<p><a href="https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924" target="_blank" rel="noopener">https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924</a></p>
+<p>原文链接：<a href="https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924" target="_blank" rel="noopener">https://blog.usejournal.com/ten-minutes-a-day-e2fa1084f924</a></p>
 <p>译者：Gin</p>
 <p>编辑：Gin</p>
 </blockquote>
@@ -198,7 +197,7 @@
     <div class="content">
         
 <span class="post-time">
-    Last updated: <time datetime="2019-03-26T13:20:09.724Z" itemprop="dateUpdated">2019-03-26 21:20:09</time>
+    Last updated: <time datetime="2019-03-26T13:26:43.558Z" itemprop="dateUpdated">2019-03-26 21:26:43</time>
 </span><br>
 
 
@@ -341,21 +340,21 @@
         
 <footer class="footer">
     <div class="top">
-        
-
+        <%- partial('plugins/site-visit') %>
         <p>
-            
-                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
-            
-            <span>This blog is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</span>
+            <% if ((config.feed) && (config.feed.path.length)) { %>
+                <span><a href="<%- url_for(config.feed.path) %>" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <% } %>
+            <span><%- __('footer.license') %></span>
         </p>
     </div>
     <div class="bottom">
-        <p><span>Yan Jin &copy; 2017 - 2019</span>
+        <p><span><%-config.author %> &copy; <%if (theme.since_year && theme.since_year < date(new Date(), 'YYYY')) {%><%- theme.since_year %> - <%}%><%- date(new Date(), 'YYYY') %></span>
             <span>
-                
-                Nice to meet you<br>
-                
+                <% if(theme.ICP_license) {%>
+                <a href="http://www.miitbeian.gov.cn/" target="_blank"><%- theme.ICP_license %></a><br>
+                <% } %>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
             </span>
         </p>
     </div>
